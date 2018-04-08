@@ -26,6 +26,7 @@ TagManager:
   - localPlayer
   - wall
   - car
+  - SwapGun
   layers:
   - Default
   - TransparentFX

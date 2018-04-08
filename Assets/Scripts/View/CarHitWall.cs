@@ -13,18 +13,12 @@ public class CarHitWall : MonoBehaviour {
 	void Update () {
 		
 	}
-	public void OnCollisionEnter2D(Collision2D collision){
-		if (collision.gameObject.tag == "wall") {
+	public void OnTriggerEnter2D(Collider2D collision){
+		if (collision.tag == "wall") {
 			print ("hitwall");
 			Destroy (this.gameObject);
 		}
 
 	}
-	public void OnCollisionStay2D(Collision2D collision){
-		if (collision.gameObject.tag == "wall") {
-			print ("hitwall");
-			Destroy (this.gameObject);
-		}
-
-	}
+	
 }

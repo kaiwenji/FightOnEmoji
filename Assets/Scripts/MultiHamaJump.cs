@@ -5,11 +5,26 @@ using UnityEngine.Networking;
 
 public class MultiHamaJump : Photon.MonoBehaviour
 {
+    public Sprite PlayerHitCar;
+    public Sprite MainCharacter;
+    private bool timer_start = false;
+    private float start_time;
+    private float interval = 1f;
     public Sprite doodle;
     public float force;
     private Vector3 enemyPos;
     private Rigidbody2D rb;
     private Vector3 zeroVector = new Vector3(0, 0, 0);
+    public int maxHealth = 100;
+    public int _curHealth;
+    public int curHealth
+    {
+        get { return _curHealth; }
+        set { _curHealth = Mathf.Clamp(value, 0, maxHealth); }
+    }
+
+    [SerializeField]
+    private StatusIndicator statusIndicator;
     //private GameObject MultiGameControl;
     // Use this for initialization
     void Start()
@@ -21,6 +36,23 @@ public class MultiHamaJump : Photon.MonoBehaviour
         //}
     }
     // Update is called once per frame
+    void Update()
+    {
+        // 5 - 射击
+        bool shoot = Input.GetButtonDown("Fire1");
+        shoot |= Input.GetButtonDown("Fire2");
+        // 小心：对于Mac用户，按Ctrl +箭头是一个坏主意
+
+        if (shoot)
+        {
+            WeaponScript weapon = GetComponent<WeaponScript>();
+            if (weapon != null)
+            {
+                weapon.Attack(false);
+            }
+        }
+    }
+
     void FixedUpdate()
     {
         if (!MultiGameControl.instance.frogStop)
@@ -58,6 +90,15 @@ public class MultiHamaJump : Photon.MonoBehaviour
                 }
                 transform.Translate(Vector3.down * Time.deltaTime * force);
 
+            }
+            if (timer_start == true)
+            {
+                if (Time.time > start_time + interval)
+                {
+                    timer_start = false;
+                    this.GetComponent<SpriteRenderer>().sprite = MainCharacter;
+
+                }
             }
         }
 
@@ -106,6 +147,19 @@ public class MultiHamaJump : Photon.MonoBehaviour
             int x = Random.Range(-200, 200);
             int y = Random.Range(-200, 200);
             rb.AddForce(new Vector3(x,y,0));
+        }
+
+        if (collision.tag == "SwapGun")
+        {
+            Debug.Log("touch SwapGun");
+            collision.gameObject.SetActive(false);
+            GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
+        }
+        if (collision.tag == "car")
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = PlayerHitCar;
+            timer_start = true;
+            start_time = Time.time;
         }
     }
     IEnumerator actionFrozen()
@@ -156,7 +210,17 @@ public class MultiHamaJump : Photon.MonoBehaviour
         StartCoroutine(actionFrozen());
         GetComponent<Rigidbody2D>().AddForce(force);
     }
-    
+    public void DamagePlayer(int damage)
+    {
+        curHealth -= damage;
+        if (curHealth <= 0)
+        {
+            //kill the player
+        }
+
+        statusIndicator.SetHealth(curHealth, maxHealth);
+    }
+
 
 
 }
