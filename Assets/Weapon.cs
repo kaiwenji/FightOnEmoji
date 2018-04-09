@@ -30,16 +30,19 @@ public class Weapon : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//make the gun follow mouse position
-
-		if (fireRate == 0) {
-			if (Input.GetButtonDown ("Fire1")) {
-				Shoot();
+		if (transform.parent.tag == "localPlayer") 
+		{
+			if (fireRate == 0) {
+				if (FireButton.pressFireButton) {
+					Shoot();
+					FireButton.pressFireButton = false;
+				}
 			}
-		}
-		else {
-			if (Input.GetButton ("Fire1") && Time.time > timeToFire) {
-				timeToFire = Time.time + 1/fireRate;
-				Shoot();
+			else {
+				if (Input.GetButton ("Fire1") && Time.time > timeToFire) {
+					timeToFire = Time.time + 1/fireRate;
+					Shoot();
+				}
 			}
 		}
 	}

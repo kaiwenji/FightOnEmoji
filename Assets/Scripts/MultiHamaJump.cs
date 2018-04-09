@@ -49,19 +49,19 @@ public class MultiHamaJump : Photon.MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 5 - 射击
-        bool shoot = Input.GetButtonDown("Fire1");
-        shoot |= Input.GetButtonDown("Fire2");
-        // 小心：对于Mac用户，按Ctrl +箭头是一个坏主意
-
-        if (shoot)
-        {
-            WeaponScript weapon = GetComponent<WeaponScript>();
-            if (weapon != null)
-            {
-                weapon.Attack(false);
-            }
-        }
+//        // 5 - 射击
+//        bool shoot = Input.GetButtonDown("Fire1");
+//        shoot |= Input.GetButtonDown("Fire2");
+//        // 小心：对于Mac用户，按Ctrl +箭头是一个坏主意
+//
+//        if (shoot)
+//        {
+//            WeaponScript weapon = GetComponent<WeaponScript>();
+//            if (weapon != null)
+//            {
+//                weapon.Attack(false);
+//            }
+//        }
 
         
     }
@@ -71,13 +71,15 @@ public class MultiHamaJump : Photon.MonoBehaviour
         if (!MultiGameControl.instance.frogStop)
         {
           
-            if (Input.GetKey(KeyCode.LeftArrow))
+			if (LeftButton.pressLeftButton)
             {
-				transform.Rotate (Vector3.forward);
+				transform.Rotate (Vector3.forward * 6);
+				LeftButton.pressLeftButton = false;
             }
-            if (Input.GetKey(KeyCode.RightArrow))
+			if (RightButton.pressRightButton)
             {
-				transform.Rotate (Vector3.back);
+				transform.Rotate (Vector3.back * 6);
+				RightButton.pressRightButton = false;
             }
             if (timer_start == true)
             {
