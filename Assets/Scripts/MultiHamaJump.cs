@@ -17,6 +17,8 @@ public class MultiHamaJump : Photon.MonoBehaviour
     private Vector3 zeroVector = new Vector3(0, 0, 0);
     public int maxHealth = 100;
     public int _curHealth;
+    
+
     public int curHealth
     {
         get { return _curHealth; }
@@ -34,6 +36,15 @@ public class MultiHamaJump : Photon.MonoBehaviour
         //{
         //    Destroy(rb);
         //}
+        curHealth = maxHealth;
+        if (statusIndicator == null)
+        {
+            Debug.LogError("No status indicator referenced on Player");
+        }
+        else
+        {
+            statusIndicator.SetHealth(curHealth, maxHealth);
+        }
     }
     // Update is called once per frame
     void Update()
@@ -51,6 +62,8 @@ public class MultiHamaJump : Photon.MonoBehaviour
                 weapon.Attack(false);
             }
         }
+
+        
     }
 
     void FixedUpdate()
@@ -95,14 +108,17 @@ public class MultiHamaJump : Photon.MonoBehaviour
             {
                 if (Time.time > start_time + interval)
                 {
+                    DamagePlayer(10);
                     timer_start = false;
                     this.GetComponent<SpriteRenderer>().sprite = MainCharacter;
+                    
 
                 }
             }
+
         }
 
-
+       // DamagePlayer(10);
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -216,8 +232,14 @@ public class MultiHamaJump : Photon.MonoBehaviour
         if (curHealth <= 0)
         {
             //kill the player
+            MultiGameControl.instance.GameOver();
         }
 
+        statusIndicator.SetHealth(curHealth, maxHealth);
+    }
+    public void IncreaseBar(int increase)
+    {
+        curHealth += increase;
         statusIndicator.SetHealth(curHealth, maxHealth);
     }
 
