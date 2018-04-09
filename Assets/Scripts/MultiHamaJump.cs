@@ -70,39 +70,14 @@ public class MultiHamaJump : Photon.MonoBehaviour
     {
         if (!MultiGameControl.instance.frogStop)
         {
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                if (!rb.velocity.Equals(zeroVector))
-                {
-                    rb.velocity = zeroVector;
-                }
-                transform.Translate(Vector3.up * Time.deltaTime * force);
-            }
+          
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                if (!rb.velocity.Equals(zeroVector))
-                {
-                    rb.velocity = zeroVector;
-                }
-                transform.Translate(Vector3.left * Time.deltaTime * force);
-
+				transform.Rotate (Vector3.forward);
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                if (!rb.velocity.Equals(zeroVector))
-                {
-                    rb.velocity = zeroVector;
-                }
-                transform.Translate(Vector3.right * Time.deltaTime * force);
-            }
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                if (!rb.velocity.Equals(zeroVector))
-                {
-                    rb.velocity = zeroVector;
-                }
-                transform.Translate(Vector3.down * Time.deltaTime * force);
-
+				transform.Rotate (Vector3.back);
             }
             if (timer_start == true)
             {
@@ -111,8 +86,6 @@ public class MultiHamaJump : Photon.MonoBehaviour
                     DamagePlayer(10);
                     timer_start = false;
                     this.GetComponent<SpriteRenderer>().sprite = MainCharacter;
-                    
-
                 }
             }
 
