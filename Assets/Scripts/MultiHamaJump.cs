@@ -152,6 +152,11 @@ public class MultiHamaJump : Photon.MonoBehaviour
             timer_start = true;
             start_time = Time.time;
         }
+		if (collision.tag == "alien") {
+			Debug.Log ("Player meets a alien");
+			Destroy (collision.gameObject);
+			transform.GetComponent<playerAnimation> ().OnMeet ();
+		}
     }
     IEnumerator actionFrozen()
     {

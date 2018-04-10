@@ -28,6 +28,7 @@ TagManager:
   - car
   - SwapGun
   - chick
+  - alien
   layers:
   - Default
   - TransparentFX
