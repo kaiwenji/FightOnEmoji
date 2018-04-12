@@ -107,6 +107,10 @@ public class MultiHamaJump : Photon.MonoBehaviour
                 MultiGameControl.instance.startVs();
             }
         }
+		if (collision.collider.tag == "roof") {
+			Debug.Log ("player is near roof");
+			collision.gameObject.SetActive(false);
+		}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -171,6 +175,10 @@ public class MultiHamaJump : Photon.MonoBehaviour
             Debug.Log("get collider");
             MultiGameControl.instance.GameOver();
         }
+		if (collision.tag == "innerRoof") {
+			Debug.Log ("player leaves the room");
+			collision.gameObject.SetActive(true);
+		}
     }
 
     public void checkWhoWin(bool isMasterWin)
