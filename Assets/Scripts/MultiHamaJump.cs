@@ -107,10 +107,6 @@ public class MultiHamaJump : Photon.MonoBehaviour
                 MultiGameControl.instance.startVs();
             }
         }
-		if (collision.collider.tag == "roof") {
-			Debug.Log ("player is near roof");
-			collision.gameObject.SetActive(false);
-		}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -165,6 +161,10 @@ public class MultiHamaJump : Photon.MonoBehaviour
 			Debug.Log ("Player is in water");
 			transform.GetComponent<playerAnimation> ().InWater ();
 		}
+		if (collision.tag == "roof") {
+			Debug.Log ("player is near roof");
+			collision.gameObject.SetActive(false);
+		}
     }
     IEnumerator actionFrozen()
     {
@@ -172,6 +172,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
         yield return new WaitForSeconds(1);
         MultiGameControl.instance.frogStop = false;
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Circle")
@@ -179,10 +180,10 @@ public class MultiHamaJump : Photon.MonoBehaviour
             Debug.Log("get collider");
             MultiGameControl.instance.GameOver();
         }
-		if (collision.tag == "innerRoof") {
-			Debug.Log ("player leaves the room");
-			collision.gameObject.SetActive(true);
-		}
+//		if (collision.tag == "roof") {
+//			Debug.Log ("player leaves the room");
+//			collision.gameObject.SetActive(true);
+//		}
 		if (collision.tag == "Water") {
 			Debug.Log ("Player is getting out of water");
 			transform.GetComponent<playerAnimation> ().OutWater ();
