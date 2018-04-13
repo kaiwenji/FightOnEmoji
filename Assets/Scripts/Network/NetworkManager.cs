@@ -21,7 +21,7 @@ public class NetworkManager : MonoBehaviour {
         RoomOptions roomOptions = new RoomOptions()
         {
             IsVisible = false,
-            MaxPlayers = 2
+            MaxPlayers = 6
         };
         PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
     }

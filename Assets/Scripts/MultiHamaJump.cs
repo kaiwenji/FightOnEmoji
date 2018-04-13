@@ -165,6 +165,10 @@ public class MultiHamaJump : Photon.MonoBehaviour
 			Debug.Log ("player is near roof");
 			collision.gameObject.SetActive(false);
 		}
+        if (collision.tag == "innerRoof")
+        {
+            collision.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        }
     }
     IEnumerator actionFrozen()
     {
@@ -188,6 +192,10 @@ public class MultiHamaJump : Photon.MonoBehaviour
 			Debug.Log ("Player is getting out of water");
 			transform.GetComponent<playerAnimation> ().OutWater ();
 		}
+        if(collision.tag == "innerRoof")
+        {
+            collision.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        }
     }
 
     public void checkWhoWin(bool isMasterWin)

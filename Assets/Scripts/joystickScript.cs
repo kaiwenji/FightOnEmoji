@@ -75,7 +75,6 @@ public class joystickScript : MonoBehaviour
     void OnJoystickMove(MovingJoystick move)
 
     {
-        Debug.Log("enter");
         if (move.joystickName != "Move")
 
         {
@@ -86,11 +85,10 @@ public class joystickScript : MonoBehaviour
 
         if (move.joystickAxis.x < 0)
         {
-            Debug.Log("ok!");
             if (Mathf.Abs(move.joystickAxis.x) > Mathf.Abs(move.joystickAxis.y))
             {
                 //GetR.AddForce(transform.right * -force);
-				transform.Translate(Vector3.left * Time.deltaTime * force, Space.World);
+				//transform.Translate(Vector3.left * Time.deltaTime * force, Space.World);
             }
             else
             {
