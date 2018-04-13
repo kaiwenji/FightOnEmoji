@@ -83,49 +83,52 @@ public class joystickScript : MonoBehaviour
 
         }
 
-        if (move.joystickAxis.x < 0)
-        {
-            if (Mathf.Abs(move.joystickAxis.x) > Mathf.Abs(move.joystickAxis.y))
-            {
-                //GetR.AddForce(transform.right * -force);
-				//transform.Translate(Vector3.left * Time.deltaTime * force, Space.World);
-            }
-            else
-            {
-                if (move.joystickAxis.y > 0)
-                {
-                    //GetR.AddForce(transform.up * force);
-					transform.Translate(Vector3.up * Time.deltaTime * force, Space.World);
-                }
-                else
-                {
-                    //GetR.AddForce(transform.up * -force);
-					transform.Translate(Vector3.down * Time.deltaTime * force, Space.World);
-                }
-            }
-        }
-        else
-        {
-            if (Mathf.Abs(move.joystickAxis.x) > Mathf.Abs(move.joystickAxis.y))
-            {
-                //GetR.AddForce(transform.right * force);
-				transform.Translate(Vector3.right * Time.deltaTime * force, Space.World);
-            }
-            else
-            {
-                if (move.joystickAxis.y > 0)
-                {
-                    //GetR.AddForce(transform.up * force);
-					transform.Translate(Vector3.up * Time.deltaTime * force, Space.World);
-                }
-                else
-                {
-                    //GetR.AddForce(transform.up * -force);
-					transform.Translate(Vector3.down * Time.deltaTime * force, Space.World);
-                }
-            }
-        }
-
+		if (MultiGameControl.instance.frogStop == false) {
+			if (move.joystickAxis.x < 0)
+			{
+				if (Mathf.Abs(move.joystickAxis.x) > Mathf.Abs(move.joystickAxis.y))
+				{
+					//GetR.AddForce(transform.right * -force);
+					//transform.Translate(Vector3.left * Time.deltaTime * force, Space.World);
+				}
+				else
+				{
+					if (move.joystickAxis.y > 0)
+					{
+						//GetR.AddForce(transform.up * force);
+						transform.Translate(Vector3.up * Time.deltaTime * force, Space.World);
+					}
+					else
+					{
+						//GetR.AddForce(transform.up * -force);
+						transform.Translate(Vector3.down * Time.deltaTime * force, Space.World);
+					}
+				}
+			}
+			else
+			{
+				if (Mathf.Abs(move.joystickAxis.x) > Mathf.Abs(move.joystickAxis.y))
+				{
+					//GetR.AddForce(transform.right * force);
+					transform.Translate(Vector3.right * Time.deltaTime * force, Space.World);
+				}
+				else
+				{
+					if (move.joystickAxis.y > 0)
+					{
+						//GetR.AddForce(transform.up * force);
+						transform.Translate(Vector3.up * Time.deltaTime * force, Space.World);
+					}
+					else
+					{
+						//GetR.AddForce(transform.up * -force);
+						transform.Translate(Vector3.down * Time.deltaTime * force, Space.World);
+					}
+				}
+			}
+		} else {
+			return;
+		}
 
     }
 

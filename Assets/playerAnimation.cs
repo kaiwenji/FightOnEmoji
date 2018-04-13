@@ -30,4 +30,8 @@ public class playerAnimation : MonoBehaviour {
 	public void OutWater() {
 		playerAni.SetBool ("inWater", false);
 	}
+
+	public void ShootByGun() {
+		playerAni.SetTrigger ("ShootByGun");
+	}
 }

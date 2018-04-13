@@ -123,7 +123,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
         if(collision.tag == "MultiBomb")
         {
             Debug.Log("touch bomb");
-            StartCoroutine(actionFrozen());
+            StartCoroutine(actionFrozen(1));
             Vector3 vector = transform.position - collision.gameObject.transform.position;
             rb.AddForce((300 / vector.magnitude) * vector);
         }
@@ -134,7 +134,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
         if(collision.tag == "Banana")
         {
             Debug.Log("touch banana");
-            StartCoroutine(actionFrozen());
+            StartCoroutine(actionFrozen(1));
             int x = Random.Range(-200, 200);
             int y = Random.Range(-200, 200);
             rb.AddForce(new Vector3(x,y,0));
@@ -156,6 +156,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
 			Debug.Log ("Player meets a alien");
 			Destroy (collision.gameObject);
 			transform.GetComponent<playerAnimation> ().OnMeet ();
+			StartCoroutine(actionFrozen(1));
 		}
 		if (collision.tag == "Water") {
 			Debug.Log ("Player is in water");
@@ -170,10 +171,10 @@ public class MultiHamaJump : Photon.MonoBehaviour
             collision.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         }
     }
-    IEnumerator actionFrozen()
+	IEnumerator actionFrozen(int duration)
     {
         MultiGameControl.instance.frogStop = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(duration);
         MultiGameControl.instance.frogStop = false;
     }
 
@@ -228,7 +229,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
             return;
         }
         Vector3 force = pos * 100;
-        StartCoroutine(actionFrozen());
+        StartCoroutine(actionFrozen(1));
         GetComponent<Rigidbody2D>().AddForce(force);
     }
     public void DamagePlayer(int damage)
