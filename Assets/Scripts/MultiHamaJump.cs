@@ -161,6 +161,10 @@ public class MultiHamaJump : Photon.MonoBehaviour
 			Destroy (collision.gameObject);
 			transform.GetComponent<playerAnimation> ().OnMeet ();
 		}
+		if (collision.tag == "Water") {
+			Debug.Log ("Player is in water");
+			transform.GetComponent<playerAnimation> ().InWater ();
+		}
     }
     IEnumerator actionFrozen()
     {
@@ -178,6 +182,10 @@ public class MultiHamaJump : Photon.MonoBehaviour
 		if (collision.tag == "innerRoof") {
 			Debug.Log ("player leaves the room");
 			collision.gameObject.SetActive(true);
+		}
+		if (collision.tag == "Water") {
+			Debug.Log ("Player is getting out of water");
+			transform.GetComponent<playerAnimation> ().OutWater ();
 		}
     }
 

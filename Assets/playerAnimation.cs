@@ -22,4 +22,12 @@ public class playerAnimation : MonoBehaviour {
 	public void OnFire() {
 		playerAni.SetTrigger ("Fire");
 	}
+
+	public void InWater() {
+		playerAni.SetBool ("inWater", true);
+	}
+
+	public void OutWater() {
+		playerAni.SetBool ("inWater", false);
+	}
 }
