@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 212397319204391684}
   - component: {fileID: 95684874541514180}
   - component: {fileID: 114551126466575594}
+  - component: {fileID: 60032569934152082}
   m_Layer: 0
   m_Name: pig_walk
-  m_TagString: Untagged
+  m_TagString: pig
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,6 +43,72 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &60032569934152082
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1719104699360558}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.6, y: 1.6}
+    newSize: {x: 1.6, y: 1.6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.58, y: -0.74}
+      - {x: 0.65, y: -0.68}
+      - {x: 0.65999997, y: -0.59}
+      - {x: 0.64, y: -0.5}
+      - {x: 0.74, y: -0.22999999}
+      - {x: 0.79999995, y: -0.16}
+      - {x: 0.79999995, y: 0.049999997}
+      - {x: 0.78, y: 0.06}
+      - {x: 0.77, y: 0.06}
+      - {x: 0.7, y: 0.11}
+      - {x: 0.59999996, y: 0.19}
+      - {x: 0.44, y: 0.25}
+      - {x: 0.12, y: 0.26999998}
+      - {x: -0.39999998, y: 0.22}
+      - {x: -0.5, y: 0.29}
+      - {x: -0.56, y: 0.29}
+      - {x: -0.62, y: 0.22999999}
+      - {x: -0.59999996, y: 0.12}
+      - {x: -0.79999995, y: 0.01}
+      - {x: -0.79999995, y: -0.08}
+      - {x: -0.77, y: -0.17}
+      - {x: -0.64, y: -0.25}
+      - {x: -0.32999998, y: -0.35}
+      - {x: -0.34, y: -0.47}
+      - {x: -0.48999998, y: -0.62}
+      - {x: -0.45, y: -0.71999997}
+      - {x: -0.35, y: -0.7}
+      - {x: -0.29, y: -0.64}
+      - {x: -0.31, y: -0.66999996}
+      - {x: -0.31, y: -0.69}
+      - {x: -0.28, y: -0.71999997}
+      - {x: -0.19999999, y: -0.71999997}
+      - {x: -0.13, y: -0.65}
+      - {x: 0, y: -0.44}
+      - {x: 0.29, y: -0.42999998}
+      - {x: 0.37, y: -0.39999998}
+      - {x: 0.38, y: -0.71999997}
+      - {x: 0.41, y: -0.75}
+      - {x: 0.45, y: -0.75}
+      - {x: 0.5, y: -0.71999997}
+      - {x: 0.52, y: -0.64}
+      - {x: 0.5, y: -0.7}
 --- !u!95 &95684874541514180
 Animator:
   serializedVersion: 3

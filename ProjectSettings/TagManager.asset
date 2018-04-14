@@ -31,6 +31,9 @@ TagManager:
   - alien
   - roof
   - innerRoof
+  - cow
+  - pig
+  - sheep
   layers:
   - Default
   - TransparentFX

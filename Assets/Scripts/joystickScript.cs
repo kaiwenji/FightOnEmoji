@@ -89,7 +89,7 @@ public class joystickScript : MonoBehaviour
 				if (Mathf.Abs(move.joystickAxis.x) > Mathf.Abs(move.joystickAxis.y))
 				{
 					//GetR.AddForce(transform.right * -force);
-					//transform.Translate(Vector3.left * Time.deltaTime * force, Space.World);
+					transform.Translate(Vector3.left * Time.deltaTime * force, Space.World);
 				}
 				else
 				{

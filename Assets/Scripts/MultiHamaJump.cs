@@ -144,19 +144,23 @@ public class MultiHamaJump : Photon.MonoBehaviour
         {
             Debug.Log("touch SwapGun");
             collision.gameObject.SetActive(false);
-            GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
+			transform.GetComponent<playerAnimation> ().GetGun ();
+            //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
         }
         if (collision.tag == "car")
         {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = PlayerHitCar;
-            timer_start = true;
-            start_time = Time.time;
+			transform.GetComponent<playerAnimation> ().HitByCar ();
+			DamagePlayer (10);
+//            this.gameObject.GetComponent<SpriteRenderer>().sprite = PlayerHitCar;
+//            timer_start = true;
+//            start_time = Time.time;
         }
 		if (collision.tag == "alien") {
 			Debug.Log ("Player meets a alien");
 			Destroy (collision.gameObject);
 			transform.GetComponent<playerAnimation> ().OnMeet ();
 			StartCoroutine(actionFrozen(1));
+			IncreaseBar (10);
 		}
 		if (collision.tag == "Water") {
 			Debug.Log ("Player is in water");
@@ -249,6 +253,9 @@ public class MultiHamaJump : Photon.MonoBehaviour
         statusIndicator.SetHealth(curHealth, maxHealth);
     }
 
+	public void ChickenOnFire() {
+		transform.GetComponent<chickenAnimation> ().OnFire ();
+	}
 
 
 }

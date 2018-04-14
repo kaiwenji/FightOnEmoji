@@ -34,4 +34,12 @@ public class playerAnimation : MonoBehaviour {
 	public void ShootByGun() {
 		playerAni.SetTrigger ("ShootByGun");
 	}
+
+	public void HitByCar() {
+		playerAni.SetTrigger ("HitByCar");
+	}
+
+	public void GetGun() {
+		playerAni.SetBool ("GetGun", true);
+	}
 }
