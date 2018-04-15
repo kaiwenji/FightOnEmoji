@@ -13,7 +13,7 @@ public class pig : MonoBehaviour {
 	void Update () {
 		
 	}
-	void cook(){
+	public void cook(){
 
 		GetComponent<SpriteRenderer> ().sprite = cooked;
 	}

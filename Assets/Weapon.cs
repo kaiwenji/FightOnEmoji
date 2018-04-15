@@ -69,10 +69,22 @@ public class Weapon : MonoBehaviour {
 			Debug.DrawLine (firePointPosition, hit.point, Color.red);
 			Debug.Log ("We hit " + hit.collider.name + " and did " + Damage + " damage.");
 
-			MultiHamaJump p = hit.collider.GetComponent<MultiHamaJump>();
-			if (p != null) {
-				p.DamagePlayer (Damage);
+			//if we hit a player
+			if (hit.collider.tag == "Player") {
+				hit.collider.GetComponent<MultiHamaJump> ().DamagePlayer (Damage);
 				Debug.Log ("We hit " + hit.collider.name + " and did " + Damage + " damage.");
+			} 
+			//if hit a chicken
+			else if (hit.collider.tag == "chicken") {
+				hit.collider.GetComponent<chicken> ().cook ();
+			} 
+			//if hit a pig
+			else if (hit.collider.tag == "pig") {
+				hit.collider.GetComponent<pig> ().cook ();
+			} 
+			//if hit a sheep
+			else if (hit.collider.tag == "sheep") {
+				hit.collider.GetComponent<sheep> ().cook ();
 			}
 		}
 

@@ -9,10 +9,14 @@ public class FireBall : MonoBehaviour {
 		//if hit chicken
 		if (other.tag == "chick") {
 			//cook the chicken
-			other.gameObject.GetComponent<chicken> ().cook();
-		}
-		else if(other.tag == "pig"){
+			other.gameObject.GetComponent<chicken> ().cook ();
+		} 
+		else if (other.tag == "pig") {
 			//cook the pig
+		} 
+		else if (other.tag == "Player") {
+			
 		}
+
 	}
 }
