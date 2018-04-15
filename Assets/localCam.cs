@@ -10,7 +10,6 @@ public class localCam : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (player == null) {
-			Debug.Log ("Not bind to game player");
 			player = GameObject.FindWithTag ("localPlayer");
 		} 
 		else 

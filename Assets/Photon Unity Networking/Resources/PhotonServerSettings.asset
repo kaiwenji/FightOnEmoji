@@ -50,4 +50,5 @@ MonoBehaviour:
   - endFight
   - rpcEndGame
   - setWinner
+  - setHealthBar
   DisableAutoOpenWizard: 1

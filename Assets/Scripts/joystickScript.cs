@@ -126,9 +126,28 @@ public class joystickScript : MonoBehaviour
 					}
 				}
 			}
-		} else {
-			return;
-		}
+            //rotate stuff
+            float angle = (float)System.Math.Atan(move.joystickAxis.y / move.joystickAxis.x);
+            angle *= 57;
+
+            if (move.joystickAxis.y >= 0 && move.joystickAxis.x < 0)
+            {
+                angle += 270;
+            }
+            else if (move.joystickAxis.y < 0 && move.joystickAxis.x >= 0)
+            {
+                angle += 90;
+            }
+            else if (move.joystickAxis.y < 0 && move.joystickAxis.x < 0)
+            {
+                angle += 270;
+            }
+            else
+            {
+                angle += 90;
+            }
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        }
 
     }
 

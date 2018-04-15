@@ -71,7 +71,7 @@ public class Weapon : MonoBehaviour {
 
 			//if we hit a player
 			if (hit.collider.tag == "Player") {
-				hit.collider.GetComponent<MultiHamaJump> ().DamagePlayer (Damage);
+				hit.collider.GetComponent<HealthScript> ().DamagePlayer (Damage);
 				Debug.Log ("We hit " + hit.collider.name + " and did " + Damage + " damage.");
 			} 
 			//if hit a chicken
@@ -107,15 +107,15 @@ public class Weapon : MonoBehaviour {
 	}
 
 	void Effect (Vector3 hitPos) {
-		Transform trail = Instantiate (BulletTrailPrefab, firePoint.position, firePoint.rotation) as Transform;
-		LineRenderer lr = trail.GetComponent<LineRenderer> ();
+        GameObject trail = PhotonNetwork.Instantiate("BulletTrail", firePoint.position, firePoint.rotation, 0);
+        //LineRenderer lr = trail.GetComponent<LineRenderer> ();
 
-		if (lr != null) 
-		{
-			//set positions
-			lr.SetPosition(0, firePoint.position);
-			lr.SetPosition (1, hitPos);
-		}
-		Destroy (trail.gameObject, 0.02f);
+        //if (lr != null) 
+        //{
+        //set positions
+        //lr.SetPosition(0, firePoint.position);
+        //lr.SetPosition (1, hitPos);
+        //}
+        Destroy (trail, 0.02f);
 	}
 }

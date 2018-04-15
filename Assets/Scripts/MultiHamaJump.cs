@@ -11,62 +11,43 @@ public class MultiHamaJump : Photon.MonoBehaviour
     public static bool withFireGun = false;
     public static bool withSwapGun = false;
     //private bool timer_start = false;
-    //private float start_time;
+    private float start_time;
     //private float interval = 1f;
     public Sprite doodle;
     public float force;
     private Vector3 enemyPos;
     private Rigidbody2D rb;
     private Vector3 zeroVector = new Vector3(0, 0, 0);
-    public int maxHealth = 100;
-    public int _curHealth;
-    
 
-    public int curHealth
-    {
-        get { return _curHealth; }
-        set { _curHealth = Mathf.Clamp(value, 0, maxHealth); }
-    }
+    private float speed;
+    private Vector3 startPos;
+    private Vector3 endPos;
+    private float journeyLength;
+    private bool dizzy;
 
-    [SerializeField]
-    private StatusIndicator statusIndicator;
-    //private GameObject MultiGameControl;
-    // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //if (!photonView.isMine)
-        //{
-        //    Destroy(rb);
-        //}
-        curHealth = maxHealth;
-        if (statusIndicator == null)
-        {
-            Debug.LogError("No status indicator referenced on Player");
-        }
-        else
-        {
-            statusIndicator.SetHealth(curHealth, maxHealth);
-        }
     }
     // Update is called once per frame
     void Update()
     {
-//        // 5 - 射击
-//        bool shoot = Input.GetButtonDown("Fire1");
-//        shoot |= Input.GetButtonDown("Fire2");
-//        // 小心：对于Mac用户，按Ctrl +箭头是一个坏主意
-//
-//        if (shoot)
-//        {
-//            WeaponScript weapon = GetComponent<WeaponScript>();
-//            if (weapon != null)
-//            {
-//                weapon.Attack(false);
-//            }
-//        }
+        if (dizzy)
+        {
+            float distCovered = (Time.time - start_time) * speed;
+            float fracJourney = distCovered / journeyLength;
+            transform.position = Vector3.Lerp(startPos, endPos, fracJourney);
+            transform.Rotate(new Vector3(0, 0, 15));
+            if (fracJourney > 0.5)
+            {
+                transform.localScale -= new Vector3(0.05F, 0.05F, 0);
+            }
+            else
+            {
+                transform.localScale += new Vector3(0.05F, 0.05F, 0);
+            }
 
-        
+        }
     }
 
     void FixedUpdate()
@@ -104,33 +85,29 @@ public class MultiHamaJump : Photon.MonoBehaviour
 
         if (collision.collider.tag == "Player")
         {
-            Debug.Log("touch player");
-            if (PhotonNetwork.isMasterClient)
-            {
-                MultiGameControl.instance.startVs();
-            }
+            //string localName = GetComponent<PhotonView>().owner.name;
+            //string collisionName = collision.gameObject.GetComponent<PhotonView>().owner.name;
+            //collision.gameObject.name = "enemyPlayer";
+            //MultiGameControl.instance.startVs(localName, collisionName);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Fountain")
-        {
-            //MultiGameControl.instance.success();
-        }
-        if (collision.tag == "Water")
-        {
-            //MultiGameControl.instance.CmdDied(isLocalPlayer);
-            //MultiGameControl.instance.frogDied();
-        }
-        if(collision.tag == "MultiBomb")
+
+        if (collision.tag == "Bomb")
         {
             Debug.Log("touch bomb");
-            StartCoroutine(actionFrozen(1));
             Vector3 vector = transform.position - collision.gameObject.transform.position;
-            rb.AddForce((300 / vector.magnitude) * vector);
+            startPos = transform.position;
+            endPos = transform.position + (10 / vector.magnitude) * vector;
+            journeyLength = Vector3.Distance(startPos, endPos);
+            speed = journeyLength;
+            start_time = Time.time;
+            dizzy = true;
+            StartCoroutine(actionFrozen(1));
         }
-        if(collision.tag == "ChewingGum")
+        if (collision.tag == "ChewingGum")
         {
             collision.gameObject.GetComponent<gumScript>().openCollider();
         }
@@ -170,18 +147,19 @@ public class MultiHamaJump : Photon.MonoBehaviour
         if (collision.tag == "car")
         {
 			transform.GetComponent<playerAnimation> ().HitByCar ();
-			DamagePlayer (10);
-//            this.gameObject.GetComponent<SpriteRenderer>().sprite = PlayerHitCar;
-//            timer_start = true;
-//            start_time = Time.time;
+            GetComponent<HealthScript>().DamagePlayer(10);
+            //            this.gameObject.GetComponent<SpriteRenderer>().sprite = PlayerHitCar;
+            //            timer_start = true;
+            //            start_time = Time.time;
         }
 		if (collision.tag == "alien") {
 			Debug.Log ("Player meets a alien");
 			Destroy (collision.gameObject);
 			transform.GetComponent<playerAnimation> ().OnMeet ();
 			StartCoroutine(actionFrozen(1));
-			IncreaseBar (10);
-		}
+            //IncreaseBar (10);
+            GetComponent<HealthScript>().IncreaseBar(10);
+        }
 		if (collision.tag == "Water") {
 			Debug.Log ("Player is in water");
 			transform.GetComponent<playerAnimation> ().InWater ();
@@ -200,6 +178,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
         MultiGameControl.instance.frogStop = true;
         yield return new WaitForSeconds(duration);
         MultiGameControl.instance.frogStop = false;
+        dizzy = false;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -256,26 +235,6 @@ public class MultiHamaJump : Photon.MonoBehaviour
         StartCoroutine(actionFrozen(1));
         GetComponent<Rigidbody2D>().AddForce(force);
     }
-    public void DamagePlayer(int damage)
-    {
-        curHealth -= damage;
-        if (curHealth <= 0)
-        {
-            //kill the player
-            MultiGameControl.instance.GameOver();
-        }
-
-        statusIndicator.SetHealth(curHealth, maxHealth);
-    }
-    public void IncreaseBar(int increase)
-    {
-        curHealth += increase;
-        statusIndicator.SetHealth(curHealth, maxHealth);
-    }
-
-	public void ChickenOnFire() {
-		transform.GetComponent<chickenAnimation> ().OnFire ();
-	}
 
 
 }
