@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour {
 	public LayerMask whatToHit;
 
 	public Transform BulletTrailPrefab;
+	public Transform FireBallPrefab;
 	//public Transform MuzzleFlashPrefab;
 	float timeToSpawnEffect = 0;
 	public float effectSpawnRate = 10;
@@ -30,18 +31,29 @@ public class Weapon : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//make the gun follow mouse position
-		if (transform.parent.tag == "localPlayer") 
-		{
+		if (transform.parent.tag == "localPlayer" && MultiHamaJump.withNormalGun) {
 			if (fireRate == 0) {
 				if (FireButton.pressFireButton) {
-					Shoot();
+					Shoot ();
 					FireButton.pressFireButton = false;
 				}
-			}
-			else {
+			} else {
 				if (Input.GetButton ("Fire1") && Time.time > timeToFire) {
-					timeToFire = Time.time + 1/fireRate;
-					Shoot();
+					timeToFire = Time.time + 1 / fireRate;
+					Shoot ();
+				}
+			}
+		} 
+		else if (transform.parent.tag == "localPlayer" && MultiHamaJump.withFireGun) {
+			if (fireRate == 0) {
+				if (FireButton.pressFireButton) {
+					ShootFireBall ();
+					FireButton.pressFireButton = false;
+				}
+			} else {
+				if (Input.GetButton ("Fire1") && Time.time > timeToFire) {
+					timeToFire = Time.time + 1 / fireRate;
+					ShootFireBall ();
 				}
 			}
 		}
@@ -76,6 +88,12 @@ public class Weapon : MonoBehaviour {
 		}
 	}
 
+	void ShootFireBall(){
+		Transform clone = Instantiate (FireBallPrefab, firePoint.position, firePoint.rotation) as Transform;
+		clone.parent = firePoint;
+		Destroy (clone.gameObject, 0.5f);
+	}
+
 	void Effect (Vector3 hitPos) {
 		Transform trail = Instantiate (BulletTrailPrefab, firePoint.position, firePoint.rotation) as Transform;
 		LineRenderer lr = trail.GetComponent<LineRenderer> ();
@@ -87,9 +105,5 @@ public class Weapon : MonoBehaviour {
 			lr.SetPosition (1, hitPos);
 		}
 		Destroy (trail.gameObject, 0.02f);
-
-		//Transform clone = Instantiate (MuzzleFlashPrefab, firePoint.position, firePoint.rotation) as Transform;
-		//clone.parent = firePoint;
-		//Destroy (clone.gameObject, 0.02f);
 	}
 }

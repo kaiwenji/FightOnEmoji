@@ -14,11 +14,11 @@ public class chicken : MonoBehaviour {
 	void Update () {
 		
 	}
-	void cook(){
+	public void cook(){
 		
 		GetComponent<SpriteRenderer> ().sprite = cooked;
 	}
-	void onfire(){
+	public void onfire(){
 		transform.GetComponent<chickenAnimation> ().OnFire ();
 		GetComponent<SpriteRenderer> ().sprite = cooked;
 	}
