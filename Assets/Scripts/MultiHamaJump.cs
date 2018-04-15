@@ -126,6 +126,8 @@ public class MultiHamaJump : Photon.MonoBehaviour
             collision.gameObject.SetActive(false);
 			transform.GetComponent<playerAnimation> ().GetGun ();
             withNormalGun = true;
+            withFireGun = false;
+            withSwapGun = false;
             //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
         }
         if (collision.tag == "FireGun")
@@ -133,7 +135,9 @@ public class MultiHamaJump : Photon.MonoBehaviour
             Debug.Log("touch FireGun");
             collision.gameObject.SetActive(false);
             transform.GetComponent<playerAnimation>().GetGun();
+            withNormalGun = false;
             withFireGun = true;
+            withSwapGun = false;
             //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
         }
         if (collision.tag == "SwapGun")
@@ -141,6 +145,8 @@ public class MultiHamaJump : Photon.MonoBehaviour
             Debug.Log("touch SwapGun");
             collision.gameObject.SetActive(false);
             transform.GetComponent<playerAnimation>().GetGun();
+            withNormalGun = false;
+            withFireGun = false;
             withSwapGun = true;
             //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
         }
