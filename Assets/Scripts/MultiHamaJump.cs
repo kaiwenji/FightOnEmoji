@@ -5,11 +5,14 @@ using UnityEngine.Networking;
 
 public class MultiHamaJump : Photon.MonoBehaviour
 {
-    public Sprite PlayerHitCar;
-    public Sprite MainCharacter;
-    private bool timer_start = false;
-    private float start_time;
-    private float interval = 1f;
+    //public Sprite PlayerHitCar;
+    //public Sprite MainCharacter;
+    public static bool withNormalGun = false;
+    public static bool withFireGun = false;
+    public static bool withSwapGun = false;
+    //private bool timer_start = false;
+    //private float start_time;
+    //private float interval = 1f;
     public Sprite doodle;
     public float force;
     private Vector3 enemyPos;
@@ -81,15 +84,15 @@ public class MultiHamaJump : Photon.MonoBehaviour
 				transform.Rotate (Vector3.back * 6);
 				RightButton.pressRightButton = false;
             }
-            if (timer_start == true)
-            {
-                if (Time.time > start_time + interval)
-                {
-                    DamagePlayer(10);
-                    timer_start = false;
-                    this.GetComponent<SpriteRenderer>().sprite = MainCharacter;
-                }
-            }
+            //if (timer_start == true)
+            //{
+            //    if (Time.time > start_time + interval)
+            //    {
+            //        DamagePlayer(10);
+            //        timer_start = false;
+            //        this.GetComponent<SpriteRenderer>().sprite = MainCharacter;
+            //    }
+            //}
 
         }
 
@@ -140,11 +143,28 @@ public class MultiHamaJump : Photon.MonoBehaviour
             rb.AddForce(new Vector3(x,y,0));
         }
 
+        if (collision.tag == "NormalGun")
+        {
+            Debug.Log("touch NormalGun");
+            collision.gameObject.SetActive(false);
+			transform.GetComponent<playerAnimation> ().GetGun ();
+            withNormalGun = true;
+            //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
+        }
+        if (collision.tag == "FireGun")
+        {
+            Debug.Log("touch FireGun");
+            collision.gameObject.SetActive(false);
+            transform.GetComponent<playerAnimation>().GetGun();
+            withFireGun = true;
+            //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
+        }
         if (collision.tag == "SwapGun")
         {
             Debug.Log("touch SwapGun");
             collision.gameObject.SetActive(false);
-			transform.GetComponent<playerAnimation> ().GetGun ();
+            transform.GetComponent<playerAnimation>().GetGun();
+            withSwapGun = true;
             //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
         }
         if (collision.tag == "car")
