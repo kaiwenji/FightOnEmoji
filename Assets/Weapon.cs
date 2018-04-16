@@ -73,6 +73,7 @@ public class Weapon : MonoBehaviour {
 			if (hit.collider.tag == "Player") {
 				hit.collider.GetComponent<HealthScript> ().DamagePlayer (Damage);
 				Debug.Log ("We hit " + hit.collider.name + " and did " + Damage + " damage.");
+				hit.collider.GetComponent<MultiHamaJump> ().PlayerShootByGun ();
 			} 
 			//if hit a chicken
 			else if (hit.collider.tag == "chicken") {
@@ -85,6 +86,9 @@ public class Weapon : MonoBehaviour {
 			//if hit a sheep
 			else if (hit.collider.tag == "sheep") {
 				hit.collider.GetComponent<sheep> ().Shoot ();
+			//if hit a cow
+			} else if (hit.collider.tag == "cow") {
+				hit.collider.GetComponent<cow> ().Shoot ();
 			}
 		}
 

@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{152ECE85-E267-DB57-D678-C9FD5636C6C2}</ProjectGuid>
+    <ProjectGuid>{63977A84-D6D6-8FA6-4639-C38D7ABA398E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -80,7 +80,7 @@
      <Compile Include="Assets\Simple Health Bar\Editor\SimpleHealthBarEditor.cs" />
      <Compile Include="Assets\Simple Health Bar\Editor\SimpleHealthBarWindow.cs" />
  <Reference Include="Assembly-UnityScript">
- <HintPath>/Users/ruowenchen/Downloads/Dear-Friends/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ <HintPath>/Users/ruowenchen/Desktop/kevin/526newnewnew/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UIAutomation">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UIAutomation/UnityEngine.UIAutomation.dll</HintPath>
@@ -149,13 +149,13 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="Photon3Unity3D">
- <HintPath>/Users/ruowenchen/Downloads/Dear-Friends/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+ <HintPath>/Users/ruowenchen/Desktop/kevin/526newnewnew/Assets/Plugins/Photon3Unity3D.dll</HintPath>
  </Reference>
  <Reference Include="websocket-sharp">
- <HintPath>/Users/ruowenchen/Downloads/Dear-Friends/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
+ <HintPath>/Users/ruowenchen/Desktop/kevin/526newnewnew/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
- <HintPath>/Users/ruowenchen/Downloads/Dear-Friends/Assets/Photon Unity Networking/Editor/PhotonNetwork/Newtonsoft.Json.dll</HintPath>
+ <HintPath>/Users/ruowenchen/Desktop/kevin/526newnewnew/Assets/Photon Unity Networking/Editor/PhotonNetwork/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Advertisements">
  <HintPath>/Users/ruowenchen/Library/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
@@ -187,9 +187,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{C028827F-41C5-2D7D-1852-E51615426E3E}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{A7473280-5A5D-323C-22DE-8F1C5D0E7881}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{A0731E6A-5A57-0DDF-0383-953EC38C21FD}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{F2D10CFC-5B19-B5A6-D523-0DF2F8E9205E}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

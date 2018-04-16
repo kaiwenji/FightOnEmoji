@@ -43,4 +43,17 @@ public class playerAnimation : MonoBehaviour {
 	public void GetGun() {
 		playerAni.SetBool ("GetGun", true);
 	}
+
+	public void Bomb() {
+		playerAni.SetTrigger ("Bomb");
+	}
+
+	public void StepOnGum() {
+		Debug.Log ("step on Gum");
+		playerAni.SetBool ("Gum", true);
+	}
+
+	public void GumExpire() {
+		playerAni.SetBool ("Gum", false);
+	}
 }

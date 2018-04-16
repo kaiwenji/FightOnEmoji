@@ -10,6 +10,8 @@ public class MultiHamaJump : Photon.MonoBehaviour
     public static bool withNormalGun = false;
     public static bool withFireGun = false;
     public static bool withSwapGun = false;
+
+
     //private bool timer_start = false;
     private float start_time;
     //private float interval = 1f;
@@ -34,7 +36,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
     {
         if (dizzy)
         {
-            transform.GetComponent<playerAnimation>().ShootByGun();
+			transform.GetComponent<playerAnimation> ().Bomb ();
             float distCovered = (Time.time - start_time) * speed;
             float fracJourney = distCovered / journeyLength;
             transform.position = Vector3.Lerp(startPos, endPos, fracJourney);
@@ -142,6 +144,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
         else if(collision.tag == "bullet")
         {
             GetComponent<HealthScript>().DamagePlayer(10);
+			transform.GetComponent<playerAnimation> ().ShootByGun ();
         }
     }
 	IEnumerator actionFrozen(int duration)
@@ -212,6 +215,10 @@ public class MultiHamaJump : Photon.MonoBehaviour
 	//Animation Part
 	public void PlayerOnFire() {
 		transform.GetComponent<playerAnimation> ().OnFire ();
+	}
+
+	public void PlayerShootByGun() {
+		transform.GetComponent<playerAnimation> ().ShootByGun ();
 	}
 //	public void ChickenOnFire() {
 //		transform.GetComponent<chickenAnimation> ().OnFire ();

@@ -14,7 +14,7 @@ public class cow : MonoBehaviour {
 	void Update () {
 
 	}
-	void Shoot(){
+	public void Shoot(){
 
 		transform.GetComponent<cowAnimation> ().Shoot ();
 	}
