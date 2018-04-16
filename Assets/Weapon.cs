@@ -15,6 +15,7 @@ public class Weapon : MonoBehaviour {
 	public float effectSpawnRate = 10;
 
 	float timeToFire = 0;
+	float fireInterval = 0.5f;
 	Transform firePoint;
 	Transform playerLocation;
 
@@ -32,16 +33,10 @@ public class Weapon : MonoBehaviour {
 	void Update () {
 		//make the gun follow mouse position
 		if (transform.parent.tag == "localPlayer" && MultiHamaJump.withNormalGun) {
-			if (fireRate == 0) {
-				if (FireButton.pressFireButton) {
-					Shoot ();
-					FireButton.pressFireButton = false;
-				}
-			} else {
-				if (Input.GetButton ("Fire1") && Time.time > timeToFire) {
-					timeToFire = Time.time + 1 / fireRate;
-					Shoot ();
-				}
+			if (FireButton.pressFireButton && Time.time > timeToFire) {
+				timeToFire = Time.time + fireInterval;
+				Shoot ();
+				FireButton.pressFireButton = false;
 			}
 		} 
 		else if (transform.parent.tag == "localPlayer" && MultiHamaJump.withFireGun) {
@@ -60,62 +55,16 @@ public class Weapon : MonoBehaviour {
 	}
 
 	void Shoot () {
-
-		Vector2 firePointPosition = new Vector2 (firePoint.position.x, firePoint.position.y);
-		Vector2 originPosition = new Vector2(playerLocation.position.x, playerLocation.position.y);
-		RaycastHit2D hit = Physics2D.Raycast (firePointPosition, firePointPosition - originPosition, 100, whatToHit);
-		//Debug.DrawLine (firePointPosition, (firePointPosition - originPosition)*100, Color.cyan);
-		if (hit.collider != null) {
-			Debug.DrawLine (firePointPosition, hit.point, Color.red);
-			Debug.Log ("We hit " + hit.collider.name + " and did " + Damage + " damage.");
-
-			//if we hit a player
-			if (hit.collider.tag == "Player") {
-				hit.collider.GetComponent<HealthScript> ().DamagePlayer (Damage);
-				Debug.Log ("We hit " + hit.collider.name + " and did " + Damage + " damage.");
-				hit.collider.GetComponent<MultiHamaJump> ().PlayerShootByGun ();
-			} 
-			//if hit a chicken
-			else if (hit.collider.tag == "chicken") {
-				hit.collider.GetComponent<chicken> ().Shoot ();
-			} 
-			//if hit a pig
-			else if (hit.collider.tag == "pig") {
-				hit.collider.GetComponent<pig> ().Shoot ();
-			} 
-			//if hit a sheep
-			else if (hit.collider.tag == "sheep") {
-				hit.collider.GetComponent<sheep> ().Shoot ();
-			//if hit a cow
-			} else if (hit.collider.tag == "cow") {
-				hit.collider.GetComponent<cow> ().Shoot ();
-			}
-		}
-
-		if (Time.time >= timeToSpawnEffect) {
-			Vector3 hitPos;
-			if (hit.collider == null) {
-				hitPos = (firePointPosition - originPosition) * 100;
-			} else {
-				hitPos = hit.point;
-			}
-			Effect (hitPos);
-			timeToSpawnEffect = Time.time + 1/effectSpawnRate;
-		}
+		GameObject trail = PhotonNetwork.Instantiate("BulletTrail", firePoint.position, firePoint.rotation, 0);
+		Vector3 direction = firePoint.position - firePoint.parent.position;
+		direction = direction * 20 / direction.magnitude;
+		trail.GetComponent<Rigidbody2D>().velocity = direction;
+		Destroy (trail.gameObject, 0.5f);
 	}
 
 	void ShootFireBall(){
 		Transform clone = Instantiate (FireBallPrefab, firePoint.position, firePoint.rotation) as Transform;
 		clone.position = firePoint.position;
 		Destroy (clone.gameObject, 0.5f);
-	}
-
-	void Effect (Vector3 hitPos) {
-        GameObject trail = PhotonNetwork.Instantiate("BulletTrail", firePoint.position, firePoint.rotation, 0);
-        //LineRenderer lr = trail.GetComponent<LineRenderer> ();
-        Vector3 direction = firePoint.position - firePoint.parent.position;
-        direction = direction * 20 / direction.magnitude;
-        trail.GetComponent<Rigidbody2D>().velocity = direction;
-       
 	}
 }
