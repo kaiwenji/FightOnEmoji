@@ -45,10 +45,10 @@ public class MultiGameControl : Photon.PunBehaviour {
     {
         if (gameOver)
         {
-            string res = "You Lose!";
+            string res = "You Win!";
             if (!hostWin)
             {
-                res = "You Win!";
+                res = "You Lose!";
             }
             GUI.Box(new Rect(325, -325, Screen.height, Screen.width), res, myStyle);
         }

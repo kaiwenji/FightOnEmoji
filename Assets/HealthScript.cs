@@ -31,11 +31,11 @@ public class HealthScript : Photon.MonoBehaviour
     public void DamagePlayer(int damage)
     {
         curHealth -= damage;
-        //        if (curHealth <= 0)
-        //      {
+               if (curHealth <= 0)
+             {
         //kill the player
-        //        MultiGameControl.instance.GameOver();
-        //   }
+               MultiGameControl.instance.GameOver();
+           }
 
         this.photonView.RPC("setHealthBar", PhotonTargets.All, curHealth);
     }
