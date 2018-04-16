@@ -12,5 +12,6 @@ public class sheep : MonoBehaviour {
 
 	public void OnFire() {
 		transform.GetComponent<sheepAnimation> ().OnFire ();
+		transform.tag = "meat";
 	}
 }

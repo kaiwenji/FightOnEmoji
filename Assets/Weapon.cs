@@ -106,7 +106,7 @@ public class Weapon : MonoBehaviour {
 
 	void ShootFireBall(){
 		Transform clone = Instantiate (FireBallPrefab, firePoint.position, firePoint.rotation) as Transform;
-		clone.parent = firePoint;
+		clone.position = firePoint.position;
 		Destroy (clone.gameObject, 0.5f);
 	}
 
@@ -116,11 +116,6 @@ public class Weapon : MonoBehaviour {
         Vector3 direction = firePoint.position - firePoint.parent.position;
         direction = direction * 20 / direction.magnitude;
         trail.GetComponent<Rigidbody2D>().velocity = direction;
-        //if (lr != null) 
-        //{
-        //set positions
-        //lr.SetPosition(0, firePoint.position);
-        //lr.SetPosition (1, hitPos);
-        //}
+       
 	}
 }

@@ -12,7 +12,7 @@ public class chicken : MonoBehaviour {
 	}
 	public void OnFire(){
 		transform.GetComponent<chickenAnimation> ().OnFire ();
-		//GetComponent<SpriteRenderer> ().sprite = cooked;
+
 		transform.tag = "meat";
 	}
 }

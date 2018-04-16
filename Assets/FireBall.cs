@@ -14,6 +14,7 @@ public class FireBall : MonoBehaviour {
 			//cook the sheep
 			other.gameObject.GetComponent<sheep> ().OnFire ();
 		} else if (other.tag == "Player") {
+			other.gameObject.GetComponent<MultiHamaJump> ().PlayerOnFire ();
 			
 		} else if (other.tag == "pig") {
 			other.gameObject.GetComponent<pig> ().OnFire ();
