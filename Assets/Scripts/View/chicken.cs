@@ -5,21 +5,14 @@ using UnityEngine;
 public class chicken : MonoBehaviour {
 	public Sprite cooked;
 
-	// Use this for initialization
-	void Start () {
+	public void Shoot(){
 		
+		transform.GetComponent<chickenAnimation> ().Shoot ();
+
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-	public void cook(){
-		
-		GetComponent<SpriteRenderer> ().sprite = cooked;
-	}
-	public void onfire(){
+	public void OnFire(){
 		transform.GetComponent<chickenAnimation> ().OnFire ();
-		GetComponent<SpriteRenderer> ().sprite = cooked;
+		//GetComponent<SpriteRenderer> ().sprite = cooked;
+		transform.tag = "meat";
 	}
 }

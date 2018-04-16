@@ -13,8 +13,14 @@ public class pig : MonoBehaviour {
 	void Update () {
 		
 	}
-	public void cook(){
+	public void Shoot(){
 
-		GetComponent<SpriteRenderer> ().sprite = cooked;
+		transform.GetComponent<pigAnimation> ().Shoot ();
+
+	}
+
+	public void OnFire() {
+		transform.GetComponent<pigAnimation> ().OnFire ();
+		transform.gameObject.tag = "meat";
 	}
 }

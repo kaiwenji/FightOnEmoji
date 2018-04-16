@@ -22,7 +22,9 @@ GameObject:
   - component: {fileID: 212799865020538888}
   - component: {fileID: 95467863390208818}
   - component: {fileID: 114591996386575738}
+  - component: {fileID: 114398674893213950}
   - component: {fileID: 60068003196217758}
+  - component: {fileID: 114941956499010016}
   m_Layer: 0
   m_Name: sheep_walk
   m_TagString: sheep
@@ -134,6 +136,26 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114398674893213950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1794416770839466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376918c93e67146b7a78541f96551747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+  maxX: -41
+  minX: -52
+  maxY: 25
+  minY: 5
+  chick_maxX: -52
+  chick_minX: -62
+  chick_maxY: 6.5
+  chick_minY: 1
 --- !u!114 &114591996386575738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,6 +168,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooked: {fileID: 21300000, guid: 773b8b57e1a41794585b00d064eee865, type: 3}
+--- !u!114 &114941956499010016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1794416770839466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a22e1c3409f94b3fa7aa01ae9dd3ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212799865020538888
 SpriteRenderer:
   m_ObjectHideFlags: 1

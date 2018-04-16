@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 95304848046389870}
   - component: {fileID: 114478809850809256}
   - component: {fileID: 60528109844708394}
+  - component: {fileID: 114517353091587098}
   - component: {fileID: 114643812983815020}
   m_Layer: 0
   m_Name: chicken_walk
@@ -142,6 +143,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooked: {fileID: 21300000, guid: 0aede62c59433ac4f914e592207542a4, type: 3}
+--- !u!114 &114517353091587098
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1837609373413996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376918c93e67146b7a78541f96551747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+  maxX: -41
+  minX: -52
+  maxY: 25
+  minY: 5
+  chick_maxX: -46
+  chick_minX: -65
+  chick_maxY: 35
+  chick_minY: 31
 --- !u!114 &114643812983815020
 MonoBehaviour:
   m_ObjectHideFlags: 1

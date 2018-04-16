@@ -14,8 +14,12 @@ public class cow : MonoBehaviour {
 	void Update () {
 
 	}
-	void cook(){
+	void Shoot(){
 
-		GetComponent<SpriteRenderer> ().sprite = cooked;
+		transform.GetComponent<cowAnimation> ().Shoot ();
+	}
+
+	public void OnFire() {
+		transform.GetComponent<cowAnimation> ().OnFire ();
 	}
 }

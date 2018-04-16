@@ -5,8 +5,12 @@ using UnityEngine;
 public class sheep : MonoBehaviour {
 	public Sprite cooked;
 
-	public void cook(){
+	public void Shoot(){
 
-		GetComponent<SpriteRenderer> ().sprite = cooked;
+		transform.GetComponent<sheepAnimation> ().Shoot ();
+	}
+
+	public void OnFire() {
+		transform.GetComponent<sheepAnimation> ().OnFire ();
 	}
 }
