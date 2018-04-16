@@ -76,15 +76,15 @@ public class Weapon : MonoBehaviour {
 			} 
 			//if hit a chicken
 			else if (hit.collider.tag == "chicken") {
-				hit.collider.GetComponent<chicken> ().cook ();
+				hit.collider.GetComponent<chicken> ().Shoot ();
 			} 
 			//if hit a pig
 			else if (hit.collider.tag == "pig") {
-				hit.collider.GetComponent<pig> ().cook ();
+				hit.collider.GetComponent<pig> ().Shoot ();
 			} 
 			//if hit a sheep
 			else if (hit.collider.tag == "sheep") {
-				hit.collider.GetComponent<sheep> ().cook ();
+				hit.collider.GetComponent<sheep> ().Shoot ();
 			}
 		}
 

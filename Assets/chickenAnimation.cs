@@ -14,6 +14,9 @@ public class chickenAnimation : MonoBehaviour {
 	void Update () {
 		
 	}
+	public void Shoot() {
+		chickenAni.SetTrigger ("Shoot");
+	}
 
 	public void OnFire() {
 		chickenAni.SetTrigger ("Fire");

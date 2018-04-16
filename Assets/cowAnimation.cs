@@ -14,6 +14,9 @@ public class cowAnimation : MonoBehaviour {
 	void Update () {
 
 	}
+	public void Shoot() {
+		cowAni.SetTrigger ("Shoot");
+	}
 
 	public void OnFire() {
 		cowAni.SetTrigger ("Fire");

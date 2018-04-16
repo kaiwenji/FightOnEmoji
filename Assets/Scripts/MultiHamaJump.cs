@@ -95,89 +95,73 @@ public class MultiHamaJump : Photon.MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.tag == "Bomb")
-        {
-            Debug.Log("touch bomb");
-            Vector3 vector = transform.position - collision.gameObject.transform.position;
-            startPos = transform.position;
-            endPos = transform.position + (10 / vector.magnitude) * vector;
-            journeyLength = Vector3.Distance(startPos, endPos);
-            speed = journeyLength;
-            start_time = Time.time;
-            dizzy = true;
-            StartCoroutine(actionFrozen(1));
-        }
-        if (collision.tag == "ChewingGum")
-        {
-            collision.gameObject.GetComponent<gumScript>().openCollider();
-        }
-        if(collision.tag == "Banana")
-        {
-            Debug.Log("touch banana");
-            StartCoroutine(actionFrozen(1));
-            int x = Random.Range(-200, 200);
-            int y = Random.Range(-200, 200);
-            rb.AddForce(new Vector3(x,y,0));
-        }
-
-        if (collision.tag == "NormalGun")
-        {
-            Debug.Log("touch NormalGun");
-            collision.gameObject.SetActive(false);
+		if (collision.tag == "Bomb") {
+			Debug.Log ("touch bomb");
+			Vector3 vector = transform.position - collision.gameObject.transform.position;
+			startPos = transform.position;
+			endPos = transform.position + (10 / vector.magnitude) * vector;
+			journeyLength = Vector3.Distance (startPos, endPos);
+			speed = journeyLength;
+			start_time = Time.time;
+			dizzy = true;
+			StartCoroutine (actionFrozen (1));
+		} else if (collision.tag == "ChewingGum") {
+			collision.gameObject.GetComponent<gumScript> ().openCollider ();
+		} else if (collision.tag == "Banana") {
+			Debug.Log ("touch banana");
+			StartCoroutine (actionFrozen (1));
+			int x = Random.Range (-200, 200);
+			int y = Random.Range (-200, 200);
+			rb.AddForce (new Vector3 (x, y, 0));
+		} else if (collision.tag == "NormalGun") {
+			Debug.Log ("touch NormalGun");
+			collision.gameObject.SetActive (false);
 			transform.GetComponent<playerAnimation> ().GetGun ();
-            withNormalGun = true;
-            withFireGun = false;
-            withSwapGun = false;
-            //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
-        }
-        if (collision.tag == "FireGun")
-        {
-            Debug.Log("touch FireGun");
-            collision.gameObject.SetActive(false);
-            transform.GetComponent<playerAnimation>().GetGun();
-            withNormalGun = false;
-            withFireGun = true;
-            withSwapGun = false;
-            //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
-        }
-        if (collision.tag == "SwapGun")
-        {
-            Debug.Log("touch SwapGun");
-            collision.gameObject.SetActive(false);
-            transform.GetComponent<playerAnimation>().GetGun();
-            withNormalGun = false;
-            withFireGun = false;
-            withSwapGun = true;
-            //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
-        }
-        if (collision.tag == "car")
-        {
+			withNormalGun = true;
+			withFireGun = false;
+			withSwapGun = false;
+			//GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
+		} else if (collision.tag == "FireGun") {
+			Debug.Log ("touch FireGun");
+			collision.gameObject.SetActive (false);
+			transform.GetComponent<playerAnimation> ().GetGun ();
+			withNormalGun = false;
+			withFireGun = true;
+			withSwapGun = false;
+			//GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
+		} else if (collision.tag == "SwapGun") {
+			Debug.Log ("touch SwapGun");
+			collision.gameObject.SetActive (false);
+			transform.GetComponent<playerAnimation> ().GetGun ();
+			withNormalGun = false;
+			withFireGun = false;
+			withSwapGun = true;
+			//GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
+		} else if (collision.tag == "car") {
 			transform.GetComponent<playerAnimation> ().HitByCar ();
-            GetComponent<HealthScript>().DamagePlayer(10);
-            //            this.gameObject.GetComponent<SpriteRenderer>().sprite = PlayerHitCar;
-            //            timer_start = true;
-            //            start_time = Time.time;
-        }
-		if (collision.tag == "alien") {
+			GetComponent<HealthScript> ().DamagePlayer (10);
+			//            this.gameObject.GetComponent<SpriteRenderer>().sprite = PlayerHitCar;
+			//            timer_start = true;
+			//            start_time = Time.time;
+		} else if (collision.tag == "alien") {
 			Debug.Log ("Player meets a alien");
 			Destroy (collision.gameObject);
 			transform.GetComponent<playerAnimation> ().OnMeet ();
-			StartCoroutine(actionFrozen(1));
-            //IncreaseBar (10);
-            GetComponent<HealthScript>().IncreaseBar(10);
-        }
-		if (collision.tag == "Water") {
+			StartCoroutine (actionFrozen (1));
+			//IncreaseBar (10);
+			GetComponent<HealthScript> ().IncreaseBar (10);
+		} else if (collision.tag == "Water") {
 			Debug.Log ("Player is in water");
 			transform.GetComponent<playerAnimation> ().InWater ();
-		}
-		if (collision.tag == "roof") {
+		} else if (collision.tag == "roof") {
 			Debug.Log ("player is near roof");
-			collision.gameObject.SetActive(false);
+			collision.gameObject.SetActive (false);
+		} else if (collision.tag == "innerRoof") {
+			collision.gameObject.transform.GetChild (0).gameObject.SetActive (false);
+		} else if (collision.tag == "meat") {
+			GetComponent<HealthScript> ().IncreaseBar (5);
+			Destroy (collision.gameObject);
 		}
-        if (collision.tag == "innerRoof")
-        {
-            collision.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-        }
     }
 	IEnumerator actionFrozen(int duration)
     {
@@ -244,21 +228,23 @@ public class MultiHamaJump : Photon.MonoBehaviour
 
 
 	//Animation Part
-	public void ChickenOnFire() {
-		transform.GetComponent<chickenAnimation> ().OnFire ();
+	public void PlayerOnFire() {
+		transform.GetComponent<playerAnimation> ().OnFire ();
 	}
-
-	public void PigOnFire() {
-		transform.GetComponent<pigAnimation> ().OnFire ();
-	}
-
-	public void SheepOnFire() {
-		transform.GetComponent<sheepAnimation> ().OnFire ();
-	}
-
-	public void CowOnFire() {
-		transform.GetComponent<cowAnimation> ().OnFire ();
-	}
-
+//	public void ChickenOnFire() {
+//		transform.GetComponent<chickenAnimation> ().OnFire ();
+//	}
+//
+//	public void PigOnFire() {
+//		transform.GetComponent<pigAnimation> ().OnFire ();
+//	}
+//
+//	public void SheepOnFire() {
+//		transform.GetComponent<sheepAnimation> ().OnFire ();
+//	}
+//
+//	public void CowOnFire() {
+//		transform.GetComponent<cowAnimation> ().OnFire ();
+//	}
 
 }

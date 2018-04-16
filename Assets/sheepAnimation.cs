@@ -15,6 +15,10 @@ public class sheepAnimation : MonoBehaviour {
 		
 	}
 
+	public void Shoot() {
+		sheepAni.SetTrigger ("Shoot");
+	}
+
 	public void OnFire() {
 		sheepAni.SetTrigger ("Fire");
 	}

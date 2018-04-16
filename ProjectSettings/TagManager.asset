@@ -36,6 +36,8 @@ TagManager:
   - sheep
   - NormalGun
   - FireGun
+  - duck
+  - meat
   layers:
   - Default
   - TransparentFX

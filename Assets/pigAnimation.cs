@@ -15,6 +15,10 @@ public class pigAnimation : MonoBehaviour {
 		
 	}
 
+	public void Shoot() {
+		pigAni.SetTrigger ("Shoot");
+	}
+
 	public void OnFire() {
 		pigAni.SetTrigger ("Fire");
 	}
