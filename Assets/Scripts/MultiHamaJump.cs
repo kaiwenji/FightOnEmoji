@@ -34,6 +34,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
     {
         if (dizzy)
         {
+            transform.GetComponent<playerAnimation>().ShootByGun();
             float distCovered = (Time.time - start_time) * speed;
             float fracJourney = distCovered / journeyLength;
             transform.position = Vector3.Lerp(startPos, endPos, fracJourney);
@@ -52,30 +53,6 @@ public class MultiHamaJump : Photon.MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!MultiGameControl.instance.frogStop)
-        {
-          
-			if (LeftButton.pressLeftButton)
-            {
-				transform.Rotate (Vector3.forward * 6);
-				LeftButton.pressLeftButton = false;
-            }
-			if (RightButton.pressRightButton)
-            {
-				transform.Rotate (Vector3.back * 6);
-				RightButton.pressRightButton = false;
-            }
-            //if (timer_start == true)
-            //{
-            //    if (Time.time > start_time + interval)
-            //    {
-            //        DamagePlayer(10);
-            //        timer_start = false;
-            //        this.GetComponent<SpriteRenderer>().sprite = MainCharacter;
-            //    }
-            //}
-
-        }
 
        // DamagePlayer(10);
 
@@ -185,6 +162,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
         yield return new WaitForSeconds(duration);
         MultiGameControl.instance.frogStop = false;
         dizzy = false;
+        transform.localScale = new Vector3(1, 1, 0);
     }
 
     private void OnTriggerExit2D(Collider2D collision)

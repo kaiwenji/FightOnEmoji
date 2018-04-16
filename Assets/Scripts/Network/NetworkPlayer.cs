@@ -6,7 +6,6 @@ public class NetworkPlayer : Photon.MonoBehaviour
 {
     //public GameObject camera;
     // Use this for initialization
-    public new GameObject camera;
     void Start()
     {
 
@@ -19,8 +18,8 @@ public class NetworkPlayer : Photon.MonoBehaviour
         }
         else
         {
-            camera.SetActive(false);
             Destroy(GetComponent<Rigidbody2D>());
+            Destroy(GetComponent<joystickScript>());
         }
         //GetComponent<MultiHamaJump>().enabled = true;
     }
