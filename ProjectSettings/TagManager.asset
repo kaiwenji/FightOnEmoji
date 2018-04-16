@@ -38,6 +38,7 @@ TagManager:
   - FireGun
   - duck
   - meat
+  - chick_square
   layers:
   - Default
   - TransparentFX

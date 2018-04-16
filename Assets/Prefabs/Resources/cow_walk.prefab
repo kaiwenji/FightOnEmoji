@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 212837188704045632}
   - component: {fileID: 95744361383984230}
   - component: {fileID: 114155431901751416}
+  - component: {fileID: 114147136776321534}
+  - component: {fileID: 114706942909973574}
   - component: {fileID: 60834131185677340}
   - component: {fileID: 114572267052177934}
   m_Layer: 0
@@ -130,6 +132,26 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114147136776321534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1845395185939584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376918c93e67146b7a78541f96551747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+  maxX: -41
+  minX: -52
+  maxY: 25
+  minY: 5
+  chick_maxX: -52
+  chick_minX: -62
+  chick_maxY: 6.5
+  chick_minY: 1
 --- !u!114 &114155431901751416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -153,6 +175,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5848c4d1d2624801a99200cd7b9a71a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114706942909973574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1845395185939584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376918c93e67146b7a78541f96551747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+  maxX: -41
+  minX: -52
+  maxY: 25
+  minY: 5
+  chick_maxX: -52
+  chick_minX: -62
+  chick_maxY: 6.5
+  chick_minY: 1
 --- !u!212 &212837188704045632
 SpriteRenderer:
   m_ObjectHideFlags: 1

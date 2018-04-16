@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212397319204391684}
   - component: {fileID: 95684874541514180}
   - component: {fileID: 114551126466575594}
+  - component: {fileID: 114906716421492132}
   - component: {fileID: 60032569934152082}
   - component: {fileID: 114091535660627332}
   m_Layer: 0
@@ -150,6 +151,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooked: {fileID: 21300000, guid: cadaf91fbbd8343448c34da164816a7c, type: 3}
+--- !u!114 &114906716421492132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1719104699360558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376918c93e67146b7a78541f96551747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+  maxX: -41
+  minX: -52
+  maxY: 25
+  minY: 5
+  chick_maxX: -52
+  chick_minX: -62
+  chick_maxY: 6.5
+  chick_minY: 1
 --- !u!212 &212397319204391684
 SpriteRenderer:
   m_ObjectHideFlags: 1
