@@ -14,10 +14,10 @@ public class randomlyWalk : MonoBehaviour {
 	public float minY = 5f;
 
 	//chicken
-	public float chick_maxX = -52f;
-	public float chick_minX = -62f;
-	public float chick_maxY = 6.5f;
-	public float chick_minY = 1f;
+	public float chick_maxX = -57f;
+	public float chick_minX = -68f;
+	public float chick_maxY = 7f;
+	public float chick_minY = 1.3f;
 
 	private float tChange = 0f; // force new direction in the first Update
 	private float randomX;

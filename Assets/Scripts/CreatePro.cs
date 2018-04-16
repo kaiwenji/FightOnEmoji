@@ -35,8 +35,8 @@ public class CreatePro : MonoBehaviour {
 
 		//swap_gun
 		Vector2 point31 = new Vector2(Random.Range(-85,-65), Random.Range(-6,20));
-		Vector2 point32 = new Vector2(Random.Range(-12,70), Random.Range(12,15));
-		Vector2 point321 = new Vector2(Random.Range(4,-28), Random.Range(36,70));
+		Vector2 point32 = new Vector2(Random.Range(9,70), Random.Range(34,60));
+		Vector2 point321 = new Vector2(Random.Range(-38,1), Random.Range(24,38));
 		Vector2 point322 = new Vector2(Random.Range(-100,-2), Random.Range(-50,-4));
 
 		//gum
