@@ -109,13 +109,14 @@ public class Weapon : MonoBehaviour {
 	void Effect (Vector3 hitPos) {
         GameObject trail = PhotonNetwork.Instantiate("BulletTrail", firePoint.position, firePoint.rotation, 0);
         //LineRenderer lr = trail.GetComponent<LineRenderer> ();
-
+        Vector3 direction = firePoint.position - firePoint.parent.position;
+        direction = direction * 20 / direction.magnitude;
+        trail.GetComponent<Rigidbody2D>().velocity = direction;
         //if (lr != null) 
         //{
         //set positions
         //lr.SetPosition(0, firePoint.position);
         //lr.SetPosition (1, hitPos);
         //}
-        Destroy (trail, 0.02f);
 	}
 }

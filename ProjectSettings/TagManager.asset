@@ -39,6 +39,7 @@ TagManager:
   - duck
   - meat
   - chick_square
+  - bullet
   layers:
   - Default
   - TransparentFX

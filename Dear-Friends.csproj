@@ -309,6 +309,7 @@
     <Compile Include="Assets\Car2Move.cs" />
     <Compile Include="Assets\chickenAnimation.cs" />
     <Compile Include="Assets\cow.cs" />
+    <Compile Include="Assets\cowAnimation.cs" />
     <Compile Include="Assets\EasyTouch\Example\C# Example\Example for EasyButton\Bullet.cs" />
     <Compile Include="Assets\EasyTouch\Example\C# Example\Example for EasyButton\ETPlayer.cs" />
     <Compile Include="Assets\EasyTouch\Example\C# Example\Example for EasyButton\ManualControl.cs" />
@@ -507,6 +508,7 @@
     <Compile Include="Assets\PhotonChatApi\ChatState.cs" />
     <Compile Include="Assets\PhotonChatApi\ChatUserStatus.cs" />
     <Compile Include="Assets\PhotonChatApi\IChatClientListener.cs" />
+    <Compile Include="Assets\pigAnimation.cs" />
     <Compile Include="Assets\playerAnimation.cs" />
     <Compile Include="Assets\Resources\MoveScript.cs" />
     <Compile Include="Assets\Resources\ShotScript.cs" />
@@ -549,6 +551,7 @@
     <Compile Include="Assets\Scripts\View\ItemUI.cs" />
     <Compile Include="Assets\Scripts\View\pig.cs" />
     <Compile Include="Assets\Scripts\View\sheep.cs" />
+    <Compile Include="Assets\sheepAnimation.cs" />
     <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\AsteroidController.cs" />
     <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\GameManager.cs" />
     <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\HealthPickupController.cs" />

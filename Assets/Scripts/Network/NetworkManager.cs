@@ -39,7 +39,7 @@ public class NetworkManager : MonoBehaviour {
     }
     void OnCreatedRoom()
     {
-        //PhotonNetwork.Instantiate(circlePrefab, new Vector3(), new Quaternion(), 0);
+        PhotonNetwork.Instantiate(circlePrefab, new Vector3(), new Quaternion(), 0);
         PhotonNetwork.Instantiate(gameControlPrefab, new Vector3(), Quaternion.identity, 0);
     }
 	

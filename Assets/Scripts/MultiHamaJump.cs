@@ -139,6 +139,10 @@ public class MultiHamaJump : Photon.MonoBehaviour
 			GetComponent<HealthScript> ().IncreaseBar (5);
 			Destroy (collision.gameObject);
 		}
+        else if(collision.tag == "bullet")
+        {
+            GetComponent<HealthScript>().DamagePlayer(10);
+        }
     }
 	IEnumerator actionFrozen(int duration)
     {
