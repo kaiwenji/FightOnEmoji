@@ -18,7 +18,7 @@ public class chicken : MonoBehaviour {
 		
 		GetComponent<SpriteRenderer> ().sprite = cooked;
 	}
-	public void onfire(){
+	public void OnFire(){
 		transform.GetComponent<chickenAnimation> ().OnFire ();
 		GetComponent<SpriteRenderer> ().sprite = cooked;
 	}

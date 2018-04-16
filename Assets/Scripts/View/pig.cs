@@ -17,4 +17,8 @@ public class pig : MonoBehaviour {
 
 		GetComponent<SpriteRenderer> ().sprite = cooked;
 	}
+
+	public void OnFire() {
+		transform.GetComponent<pigAnimation> ().OnFire ();
+	}
 }

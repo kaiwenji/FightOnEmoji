@@ -9,4 +9,8 @@ public class sheep : MonoBehaviour {
 
 		GetComponent<SpriteRenderer> ().sprite = cooked;
 	}
+
+	public void OnFire() {
+		transform.GetComponent<sheepAnimation> ().OnFire ();
+	}
 }

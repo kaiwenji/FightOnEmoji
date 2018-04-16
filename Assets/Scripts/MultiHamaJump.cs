@@ -243,4 +243,22 @@ public class MultiHamaJump : Photon.MonoBehaviour
     }
 
 
+	//Animation Part
+	public void ChickenOnFire() {
+		transform.GetComponent<chickenAnimation> ().OnFire ();
+	}
+
+	public void PigOnFire() {
+		transform.GetComponent<pigAnimation> ().OnFire ();
+	}
+
+	public void SheepOnFire() {
+		transform.GetComponent<sheepAnimation> ().OnFire ();
+	}
+
+	public void CowOnFire() {
+		transform.GetComponent<cowAnimation> ().OnFire ();
+	}
+
+
 }

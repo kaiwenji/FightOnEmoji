@@ -18,4 +18,8 @@ public class cow : MonoBehaviour {
 
 		GetComponent<SpriteRenderer> ().sprite = cooked;
 	}
+
+	public void OnFire() {
+		transform.GetComponent<cowAnimation> ().OnFire ();
+	}
 }
