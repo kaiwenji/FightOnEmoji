@@ -13,6 +13,7 @@ public class BulletScript : MonoBehaviour {
 	void Update () {
 		if(Time.time - startTime > 0.7)
         {
+            Debug.Log("bullet destroyed");
             Destroy(gameObject);
         }
 	}
