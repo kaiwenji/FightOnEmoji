@@ -3,6 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FireBall : MonoBehaviour {
+	private float startTime;
+	public int Damage = 5;
+	// Use this for initialization
+	void Start () {
+		startTime = Time.time;
+	}
+
+	// Update is called once per frame
+	void Update () {
+		if(Time.time - startTime > 0.1)
+		{
+			Destroy(gameObject);
+		}
+	}
 
 	void OnTriggerEnter2D(Collider2D other) {
 		Debug.Log ("we hit: " + other.tag);

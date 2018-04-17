@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour {
     private float startTime;
-	public int Damage = 5;
+	public int Damage = 1;
 	// Use this for initialization
 	void Start () {
         startTime = Time.time;
@@ -26,6 +26,7 @@ public class BulletScript : MonoBehaviour {
 				other.GetComponent<HealthScript> ().DamagePlayer (Damage);
 				Debug.Log ("We hit " + other.name + " and did " + Damage + " damage.");
 				other.GetComponent<MultiHamaJump> ().PlayerShootByGun ();
+
 			} 
 			//if hit a chicken
 			else if (other.tag == "chicken") {

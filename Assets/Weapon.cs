@@ -58,13 +58,13 @@ public class Weapon : MonoBehaviour {
 		GameObject trail = PhotonNetwork.Instantiate("BulletTrail", firePoint.position, firePoint.rotation, 0);
 		Vector3 direction = firePoint.position - firePoint.parent.position;
 		direction = direction * 20 / direction.magnitude;
-		trail.GetComponent<Rigidbody2D>().velocity = direction;
+		trail.GetComponent<Rigidbody2D>().velocity = direction * 10;
 		Destroy (trail.gameObject, 0.5f);
 	}
 
 	void ShootFireBall(){
-		Transform clone = Instantiate (FireBallPrefab, firePoint.position, firePoint.rotation) as Transform;
-		clone.position = firePoint.position;
-		Destroy (clone.gameObject, 0.5f);
+		GameObject fire = PhotonNetwork.Instantiate ("FireBall", firePoint.position, firePoint.rotation, 0);
+		Debug.Log ("fire pos:" + fire.transform.position);
+		fire.transform.position = firePoint.position;
 	}
 }

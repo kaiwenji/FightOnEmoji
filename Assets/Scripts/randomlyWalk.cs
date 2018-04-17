@@ -29,7 +29,6 @@ public class randomlyWalk : MonoBehaviour {
 			randomX = Random.Range(-4.0f,4.0f); // with float parameters, a random float
 			randomY = Random.Range(-4.0f,4.0f); //  between -2.0 and 2.0 is returned
 			// set a random interval between 0.5 and 1.5
-			Debug.Log(randomX+" "+randomY);
 			tChange = Time.time + 1.5f;
 		}
 		if (transform.CompareTag ("chick_square")) {
