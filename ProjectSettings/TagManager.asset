@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Water
+  - Bomb
+  - left
+  - medicine
+  - crocodile
+  - right
+  - Circle
+  - crocodiledrunk
+  - BambooCopter
+  - Fountain
+  - Grass
+  - WaterDrop
+  - fire_dragon
+  - Move
+  - bomb
+  - banana
+  - ChewingGum
+  - chewinggum
+  - Banana
+  - localPlayer
+  - wall
+  - car
+  - SwapGun
+  - chick
+  - alien
+  - roof
+  - innerRoof
+  - cow
+  - pig
+  - sheep
+  - NormalGun
+  - FireGun
+  - duck
+  - meat
+  - chick_square
+  - bullet
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Obstacles
+  - frog
+  - MiniMap
+  - Knapsack
+  - Roof
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Back
+    uniqueID: 769393937
+    locked: 0
+  - name: Front
+    uniqueID: 980599061
+    locked: 0
+  - name: MainCharacters
+    uniqueID: 4135089105
+    locked: 0
+  - name: frog
+    uniqueID: 2404690627
+    locked: 0
+  - name: Trees
+    uniqueID: 3756377671
+    locked: 0
