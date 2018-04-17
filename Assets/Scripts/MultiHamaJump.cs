@@ -10,7 +10,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
     public static bool withNormalGun = false;
     public static bool withFireGun = false;
     public static bool withSwapGun = false;
-
+    public static int numOfBullets = 5;
 
     //private bool timer_start = false;
     private float start_time;
@@ -99,14 +99,17 @@ public class MultiHamaJump : Photon.MonoBehaviour
 			withNormalGun = true;
 			withFireGun = false;
 			withSwapGun = false;
-			//GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
-		} else if (collision.tag == "FireGun") {
+            numOfBullets = 5;
+            //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
+        }
+        else if (collision.tag == "FireGun") {
 			Debug.Log ("touch FireGun");
 			collision.gameObject.SetActive (false);
 			transform.GetComponent<playerAnimation> ().GetGun ();
 			withNormalGun = false;
 			withFireGun = true;
 			withSwapGun = false;
+            numOfBullets = 5;
 			//GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
 		} else if (collision.tag == "SwapGun") {
 			Debug.Log ("touch SwapGun");
@@ -115,8 +118,10 @@ public class MultiHamaJump : Photon.MonoBehaviour
 			withNormalGun = false;
 			withFireGun = false;
 			withSwapGun = true;
-			//GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
-		} else if (collision.tag == "car") {
+            numOfBullets = 5;
+            //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
+        }
+        else if (collision.tag == "car") {
 			transform.GetComponent<playerAnimation> ().HitByCar ();
 			GetComponent<HealthScript> ().DamagePlayer (10);
 			//            this.gameObject.GetComponent<SpriteRenderer>().sprite = PlayerHitCar;

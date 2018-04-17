@@ -33,17 +33,19 @@ public class Weapon : MonoBehaviour {
 	void Update () {
 		//make the gun follow mouse position
 		if (transform.parent.tag == "localPlayer" && MultiHamaJump.withNormalGun) {
-			if (FireButton.pressFireButton && Time.time > timeToFire) {
+			if (FireButton.pressFireButton && Time.time > timeToFire && MultiHamaJump.numOfBullets > 0) {
 				timeToFire = Time.time + fireInterval;
 				Shoot ();
 				FireButton.pressFireButton = false;
+                MultiHamaJump.numOfBullets--;
 			}
 		} 
 		else if (transform.parent.tag == "localPlayer" && MultiHamaJump.withFireGun) {
 			if (fireRate == 0) {
-				if (FireButton.pressFireButton) {
+				if (FireButton.pressFireButton && MultiHamaJump.numOfBullets > 0) {
 					ShootFireBall ();
 					FireButton.pressFireButton = false;
+                    MultiHamaJump.numOfBullets--;
 				}
 			} else {
 				if (Input.GetButton ("Fire1") && Time.time > timeToFire) {
