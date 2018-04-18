@@ -51,6 +51,11 @@ public class MultiHamaJump : Photon.MonoBehaviour
             }
 
         }
+
+        if (numOfBullets == 0)
+        {
+            GetComponent<playerAnimation>().NoGun();
+        }
     }
 
     void FixedUpdate()

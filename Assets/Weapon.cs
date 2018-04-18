@@ -31,8 +31,16 @@ public class Weapon : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		//make the gun follow mouse position
-		if (transform.parent.tag == "localPlayer" && MultiHamaJump.withNormalGun) {
+        if (FireButton.pressFireButton && MultiHamaJump.numOfBullets == 0)
+        {
+            Debug.Log("meizidanl");
+            FireButton.pressFireButton = false;
+            GameObject root = GameObject.Find("Canvas");
+            root.transform.Find("Toast").gameObject.SetActive(true);
+            Invoke("hideToast", 1);
+        }
+        //make the gun follow mouse position
+        if (transform.parent.tag == "localPlayer" && MultiHamaJump.withNormalGun) {
 			if (FireButton.pressFireButton && Time.time > timeToFire && MultiHamaJump.numOfBullets > 0) {
 				timeToFire = Time.time + fireInterval;
 				Shoot ();
@@ -69,4 +77,10 @@ public class Weapon : MonoBehaviour {
 		Debug.Log ("fire pos:" + fire.transform.position);
 		fire.transform.position = firePoint.position;
 	}
+
+    void hideToast()
+    {
+        GameObject root = GameObject.Find("Canvas");
+        root.transform.Find("Toast").gameObject.SetActive(false);
+    }
 }

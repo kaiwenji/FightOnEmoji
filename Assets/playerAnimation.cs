@@ -44,7 +44,12 @@ public class playerAnimation : MonoBehaviour {
 		playerAni.SetBool ("GetGun", true);
 	}
 
-	public void Bomb() {
+    public void NoGun()
+    {
+        playerAni.SetBool("GetGun", false);
+    }
+
+    public void Bomb() {
 		playerAni.SetTrigger ("Bomb");
 	}
 
@@ -56,4 +61,5 @@ public class playerAnimation : MonoBehaviour {
 	public void GumExpire() {
 		playerAni.SetBool ("Gum", false);
 	}
+
 }
