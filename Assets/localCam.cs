@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class localCam : MonoBehaviour {
 	public GameObject player = null;
-	public float cameraHeight = -20.0f;
+	private float cameraHeight = -20.0f;
 	bool binded = false;
 
 	// Update is called once per frame
