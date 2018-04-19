@@ -29,7 +29,7 @@ public class FireBall : MonoBehaviour {
 			other.gameObject.GetComponent<sheep> ().OnFire ();
 		} else if (other.tag == "Player") {
 			other.gameObject.GetComponent<MultiHamaJump> ().PlayerOnFire ();
-			other.GetComponent<HealthScript> ().DamagePlayer (Damage);
+			other.GetComponent<HealthScript> ().catchFire();
 			
 		} else if (other.tag == "pig") {
 			other.gameObject.GetComponent<pig> ().OnFire ();

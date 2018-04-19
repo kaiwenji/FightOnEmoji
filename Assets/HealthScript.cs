@@ -7,6 +7,8 @@ public class HealthScript : Photon.MonoBehaviour
     public int maxHealth = 100;
     public int _curHealth;
     public StatusIndicator background;
+	public bool playerOnFire = false;
+	public bool inWater = false;
 
 
     public int curHealth
@@ -28,6 +30,16 @@ public class HealthScript : Photon.MonoBehaviour
             statusIndicator.SetHealth(curHealth, maxHealth);
         }
     }
+
+	void Update()
+	{
+		if (inWater)
+		{
+			StopCoroutine (fireHarmPlayer ());
+			playerOnFire = false;
+		}
+	}
+
     public void DamagePlayer(int damage)
     {
         curHealth -= damage;
@@ -50,4 +62,20 @@ public class HealthScript : Photon.MonoBehaviour
         curHealth = health;
         statusIndicator.SetHealth(curHealth, maxHealth);
     }
+
+	public void catchFire()
+	{
+		StartCoroutine(fireHarmPlayer());
+		playerOnFire = true;
+	}
+
+	IEnumerator fireHarmPlayer()
+	{
+		int i = 10;
+		while(i > 0) {
+			yield return new WaitForSeconds(0.5f);
+			DamagePlayer (2);
+			i--;
+		}
+	}
 }
