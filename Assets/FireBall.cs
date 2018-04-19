@@ -21,7 +21,7 @@ public class FireBall : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		Debug.Log ("we hit: " + other.tag);
 		//if hit chicken
-		if (other.tag == "chick") {
+		if (other.tag == "chick" || other.tag == "chick_square") {
 			//cook the chicken
 			other.gameObject.GetComponent<chicken> ().OnFire ();
 		} else if (other.tag == "sheep") {

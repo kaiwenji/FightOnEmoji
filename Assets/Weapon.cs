@@ -33,7 +33,7 @@ public class Weapon : MonoBehaviour {
 	void Update () {
         if (FireButton.pressFireButton && MultiHamaJump.numOfBullets == 0)
         {
-            Debug.Log("meizidanl");
+//            Debug.Log("meizidanl");
             FireButton.pressFireButton = false;
             GameObject root = GameObject.Find("Canvas");
             root.transform.Find("Toast").gameObject.SetActive(true);

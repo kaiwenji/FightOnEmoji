@@ -21,6 +21,7 @@ public class BulletScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other != null) {
+			Debug.Log ("Bullet hit " + other.tag);
 			//if we hit a player
 			if (other.tag == "Player") {
 				other.GetComponent<HealthScript> ().DamagePlayer (Damage);
@@ -29,19 +30,19 @@ public class BulletScript : MonoBehaviour {
 
 			} 
 			//if hit a chicken
-			else if (other.tag == "chicken") {
-				other.GetComponent<chicken> ().Shoot ();
+			else if (other.tag == "chick" || other.tag == "chick_square") {
+				Destroy (other.gameObject);
 			} 
 			//if hit a pig
 			else if (other.tag == "pig") {
-				other.GetComponent<pig> ().Shoot ();
+				Destroy (other.gameObject);
 			} 
 			//if hit a sheep
 			else if (other.tag == "sheep") {
-				other.GetComponent<sheep> ().Shoot ();
+				Destroy (other.gameObject);
 				//if hit a cow
 			} else if (other.tag == "cow") {
-				other.GetComponent<cow> ().Shoot ();
+				Destroy (other.gameObject);
 			}
 		}
 	}

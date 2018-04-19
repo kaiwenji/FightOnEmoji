@@ -170,7 +170,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
     {
         if (collision.tag == "Circle")
         {
-            Debug.Log("get collider");
+//            Debug.Log("get collider");
             MultiGameControl.instance.GameOver();
         }
 //		if (collision.tag == "roof") {

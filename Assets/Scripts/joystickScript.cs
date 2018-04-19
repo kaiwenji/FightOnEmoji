@@ -54,7 +54,7 @@ public class joystickScript : MonoBehaviour
     public void On_TouchStart(Gesture gesture)
     {
 
-        Debug.Log("Touch in " + gesture.position);
+//        Debug.Log("Touch in " + gesture.position);
 
     }
 

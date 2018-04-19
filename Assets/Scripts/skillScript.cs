@@ -53,7 +53,7 @@ public class skillScript : MonoBehaviour {
         
         if(collision.tag == "bomb" || collision.tag == "chewinggum" || collision.tag == "banana")
         {
-            Debug.Log(collision.tag);
+//            Debug.Log(collision.tag);
             currentTouch = collision.gameObject;
             buttonOn = true;
         }

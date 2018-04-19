@@ -7,7 +7,8 @@ public class chicken : MonoBehaviour {
 
 	public void Shoot(){
 		
-		transform.GetComponent<chickenAnimation> ().Shoot ();
+//		transform.GetComponent<chickenAnimation> ().Shoot ();
+		Destroy (transform.gameObject);
 
 	}
 	public void OnFire(){
