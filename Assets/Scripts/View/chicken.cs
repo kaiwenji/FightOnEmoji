@@ -16,4 +16,12 @@ public class chicken : MonoBehaviour {
 
 		transform.tag = "meat";
 	}
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Bomb")
+        {
+            Debug.Log("yudaojile6666666");
+            OnFire();
+        }
+    }
 }

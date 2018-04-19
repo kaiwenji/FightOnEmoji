@@ -14,4 +14,11 @@ public class sheep : MonoBehaviour {
 		transform.GetComponent<sheepAnimation> ().OnFire ();
 		transform.tag = "meat";
 	}
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Bomb")
+        {
+            OnFire();
+        }
+    }
 }
