@@ -96,7 +96,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
 			dizzy = true;
 			StartCoroutine (actionFrozen (1));
 		} else if (collision.tag == "ChewingGum") {
-			Destroy(collision.gameObject);
+			Destroy (collision.gameObject);
 			MultiGameControl.instance.frogStop = true;
 			GetComponent<playerAnimation> ().StepOnGum ();
 			gum_start_time = Time.time;
@@ -115,17 +115,16 @@ public class MultiHamaJump : Photon.MonoBehaviour
 			withNormalGun = true;
 			withFireGun = false;
 			withSwapGun = false;
-            numOfBullets = 5;
-            //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
-        }
-        else if (collision.tag == "FireGun") {
+			numOfBullets = 5;
+			//GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
+		} else if (collision.tag == "FireGun") {
 			Debug.Log ("touch FireGun");
 			collision.gameObject.SetActive (false);
 			transform.GetComponent<playerAnimation> ().GetGun ();
 			withNormalGun = false;
 			withFireGun = true;
 			withSwapGun = false;
-            numOfBullets = 5;
+			numOfBullets = 5;
 			//GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
 		} else if (collision.tag == "SwapGun") {
 			Debug.Log ("touch SwapGun");
@@ -134,10 +133,9 @@ public class MultiHamaJump : Photon.MonoBehaviour
 			withNormalGun = false;
 			withFireGun = false;
 			withSwapGun = true;
-            numOfBullets = 5;
-            //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
-        }
-        else if (collision.tag == "car") {
+			numOfBullets = 5;
+			//GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
+		} else if (collision.tag == "car") {
 			transform.GetComponent<playerAnimation> ().HitByCar ();
 			GetComponent<HealthScript> ().DamagePlayer (10);
 			//            this.gameObject.GetComponent<SpriteRenderer>().sprite = PlayerHitCar;
@@ -161,12 +159,13 @@ public class MultiHamaJump : Photon.MonoBehaviour
 		} else if (collision.tag == "meat") {
 			GetComponent<HealthScript> ().IncreaseBar (5);
 			Destroy (collision.gameObject);
-		}
-        else if(collision.tag == "bullet")
-        {
-            GetComponent<HealthScript>().DamagePlayer(10);
+		} else if (collision.tag == "bullet") {
+			GetComponent<HealthScript> ().DamagePlayer (10);
 			transform.GetComponent<playerAnimation> ().ShootByGun ();
-        }
+		} else if (collision.tag == "fireball") {
+			gameObject.GetComponent<MultiHamaJump> ().PlayerOnFire ();
+			GetComponent<HealthScript> ().catchFire();
+		}
     }
 	IEnumerator actionFrozen(int duration)
     {

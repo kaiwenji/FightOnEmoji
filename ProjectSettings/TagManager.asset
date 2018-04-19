@@ -41,6 +41,7 @@ TagManager:
   - chick_square
   - bullet
   - Toast
+  - fireball
   layers:
   - Default
   - TransparentFX

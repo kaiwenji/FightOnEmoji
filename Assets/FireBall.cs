@@ -7,16 +7,16 @@ public class FireBall : MonoBehaviour {
 	public int Damage = 5;
 	// Use this for initialization
 	void Start () {
-		startTime = Time.time;
+		Destroy (gameObject, 0.1f);
 	}
 
 	// Update is called once per frame
-	void Update () {
-		if(Time.time - startTime > 0.1)
-		{
-			Destroy(gameObject);
-		}
-	}
+//	void Update () {
+//		if(Time.time - startTime > 0.1)
+//		{
+//			Destroy(gameObject);
+//		}
+//	}
 
 	void OnTriggerEnter2D(Collider2D other) {
 		Debug.Log ("we hit: " + other.tag);
@@ -27,10 +27,6 @@ public class FireBall : MonoBehaviour {
 		} else if (other.tag == "sheep") {
 			//cook the sheep
 			other.gameObject.GetComponent<sheep> ().OnFire ();
-		} else if (other.tag == "Player") {
-			other.gameObject.GetComponent<MultiHamaJump> ().PlayerOnFire ();
-			other.GetComponent<HealthScript> ().catchFire();
-			
 		} else if (other.tag == "pig") {
 			other.gameObject.GetComponent<pig> ().OnFire ();
 		} else if (other.tag == "cow") {
