@@ -51,7 +51,7 @@ public class skillScript : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
-        if(collision.tag == "bomb" || collision.tag == "chewinggum" || collision.tag == "banana")
+        if(collision.tag == "bomb" || collision.tag == "banana")
         {
 //            Debug.Log(collision.tag);
             currentTouch = collision.gameObject;

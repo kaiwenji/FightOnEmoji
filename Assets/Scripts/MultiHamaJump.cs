@@ -14,6 +14,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
 
     //private bool timer_start = false;
     private float start_time;
+	private float gum_start_time;
     //private float interval = 1f;
     public Sprite doodle;
     public float force;
@@ -51,6 +52,11 @@ public class MultiHamaJump : Photon.MonoBehaviour
             }
 
         }
+		if (Time.time > gum_start_time + 5f) {
+
+			MultiGameControl.instance.frogStop = false;
+			GetComponent<playerAnimation> ().GumExpire ();
+		}
 
         if (numOfBullets == 0)
         {
@@ -90,7 +96,12 @@ public class MultiHamaJump : Photon.MonoBehaviour
 			dizzy = true;
 			StartCoroutine (actionFrozen (1));
 		} else if (collision.tag == "ChewingGum") {
-			collision.gameObject.GetComponent<gumScript> ().openCollider ();
+			Destroy(collision.gameObject);
+			MultiGameControl.instance.frogStop = true;
+			GetComponent<playerAnimation> ().StepOnGum ();
+			gum_start_time = Time.time;
+
+			//GetComponent<playerAnimation> ().GumExpire ();
 		} else if (collision.tag == "Banana") {
 			Debug.Log ("touch banana");
 			StartCoroutine (actionFrozen (1));
@@ -136,7 +147,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
 			Debug.Log ("Player meets a alien");
 			Destroy (collision.gameObject);
 			transform.GetComponent<playerAnimation> ().OnMeet ();
-			StartCoroutine (actionFrozen (1));
+			StartCoroutine (actionFrozen (2));
 			//IncreaseBar (10);
 			GetComponent<HealthScript> ().IncreaseBar (10);
 		} else if (collision.tag == "Water") {

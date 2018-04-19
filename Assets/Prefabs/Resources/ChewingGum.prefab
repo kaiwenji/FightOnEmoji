@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4638413031788712}
   - component: {fileID: 212893768991378470}
   - component: {fileID: 114653035133672456}
-  - component: {fileID: 114556601755271574}
   - component: {fileID: 61613529453595650}
   - component: {fileID: 114907875879412240}
   m_Layer: 0
@@ -287,18 +286,6 @@ EdgeCollider2D:
   m_Points:
   - {x: -2.3803115, y: -1.6590986}
   - {x: -2.320467, y: 0.2765162}
---- !u!114 &114556601755271574
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1028506200610190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c4b99fd418e334baed6a48a79e9659, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collider: {fileID: 1161607639126788}
 --- !u!114 &114653035133672456
 MonoBehaviour:
   m_ObjectHideFlags: 1
