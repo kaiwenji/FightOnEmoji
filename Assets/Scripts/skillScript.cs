@@ -23,7 +23,7 @@ public class skillScript : MonoBehaviour {
 
     void Start () {
         onTransfer = false;
-        buttonSize = new Vector2(buttonImg.height, buttonImg.width);
+        buttonSize = new Vector2(170, 180);
     }
 	
 	// Update is called once per frame
@@ -67,7 +67,9 @@ public class skillScript : MonoBehaviour {
     {
         if (buttonOn)
         {
-            if (GUI.Button(new Rect(buttonPos, buttonSize), pickButtonImg))
+            GUIStyle fontStyle1 = new GUIStyle();
+            fontStyle1.normal.background = (Texture2D)pickButtonImg;
+            if (GUI.Button(new Rect(buttonPos, buttonSize), "", fontStyle1))
             {
                 currentSkill = currentTouch.tag;
                 Debug.Log(currentSkill);
@@ -75,7 +77,9 @@ public class skillScript : MonoBehaviour {
                 Destroy(currentTouch);
             }
         }
-        if(GUI.Button(new Rect(1100, 350, 100, 100), buttonImg))
+        GUIStyle fontStyle2 = new GUIStyle();
+        fontStyle2.normal.background = (Texture2D)buttonImg;
+        if (GUI.Button(new Rect(1100, 350, 100, 100), "", fontStyle2))
         {
             Debug.Log("release bomb");
             if (count > 0)

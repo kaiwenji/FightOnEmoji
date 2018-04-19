@@ -478,8 +478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f99541cb5189a40858fa3262bb44e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonImg: {fileID: 2800000, guid: 236ccac8f59023f40af2c629203e3380, type: 3}
-  pickButtonImg: {fileID: 2800000, guid: e54d01897c616fb4bac5eb1918b84a88, type: 3}
+  buttonImg: {fileID: 2800000, guid: 3fe4bfdae3ad31c4793d21b6a3b08dc5, type: 3}
+  pickButtonImg: {fileID: 2800000, guid: 3585b7bac9477254799b4cc951d65da2, type: 3}
   buttonPos: {x: 950, y: 500}
 --- !u!114 &114482016275096800
 MonoBehaviour:
