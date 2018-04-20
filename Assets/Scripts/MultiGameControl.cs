@@ -90,7 +90,7 @@ public class MultiGameControl : Photon.PunBehaviour
     {
         Debug.Log("set player number");
         numberOfAlive += 1;
-        if(numberOfAlive == 1)
+        if(numberOfAlive >= 1)
         {
             this.photonView.RPC("startGame", PhotonTargets.All);
         }
