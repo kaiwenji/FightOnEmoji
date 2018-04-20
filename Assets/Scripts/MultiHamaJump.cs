@@ -94,6 +94,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
 			start_time = Time.time;
 			dizzy = true;
 			StartCoroutine (actionFrozen (1));
+			GetComponent<HealthScript> ().DamagePlayer (20);
 		} else if (collision.tag == "ChewingGum") {
 			Destroy (collision.gameObject);
 			MultiGameControl.instance.frogStop = true;

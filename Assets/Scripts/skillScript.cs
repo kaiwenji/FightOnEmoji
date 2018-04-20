@@ -65,6 +65,11 @@ public class skillScript : MonoBehaviour
 
     public void throwBomb()
     {
+		if (bombCounter <= 0) {
+			hasBomb = false;
+			bombBtn.gameObject.SetActive(false);
+			return;
+		}
         bomb = PhotonNetwork.Instantiate("Bomb", transform.position, transform.rotation, 0);
         Vector3 direction = transform.GetChild(0).transform.position - transform.position;
         direction /= Vector3.Magnitude(direction);
@@ -79,6 +84,12 @@ public class skillScript : MonoBehaviour
 
     public void throwGum()
     {
+		if (gumCounter <= 0) 
+		{
+			hasGum = false;
+			gumBtn.gameObject.SetActive(false);
+			return;
+		}
         Vector3 startPos = transform.position;
         startPos.y += 100;
         GameObject gum = PhotonNetwork.Instantiate("ChewingGum", startPos, transform.rotation, 0);
