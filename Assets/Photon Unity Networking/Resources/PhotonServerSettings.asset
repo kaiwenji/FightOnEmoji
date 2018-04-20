@@ -51,4 +51,21 @@ MonoBehaviour:
   - rpcEndGame
   - setWinner
   - setHealthBar
+  - PigAniFire
+  - PigAniShoot
+  - SheepAniFire
+  - SheepAniShoot
+  - CowAniFire
+  - CowAniShoot
+  - ChicAniFire
+  - ChicAniShoot
+  - AniMeetAlien
+  - AniGumExpire
+  - AniHitCar
+  - AniInWater
+  - AniNoGun
+  - AniOutWater
+  - AniPickGun
+  - PlayerAniFire
+  - PlayerAniShoot
   DisableAutoOpenWizard: 1

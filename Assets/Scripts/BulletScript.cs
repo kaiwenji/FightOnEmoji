@@ -31,18 +31,18 @@ public class BulletScript : MonoBehaviour {
 //			} 
 			//if hit a chicken
 			if (other.tag == "chick" || other.tag == "chick_square") {
-				Destroy (other.gameObject);
+				other.gameObject.GetComponent<chicken> ().Shoot ();
 			} 
 			//if hit a pig
 			else if (other.tag == "pig") {
-				Destroy (other.gameObject);
+				other.gameObject.GetComponent<pig> ().Shoot ();
 			} 
 			//if hit a sheep
 			else if (other.tag == "sheep") {
-				Destroy (other.gameObject);
+				other.gameObject.GetComponent<sheep> ().Shoot ();
 				//if hit a cow
 			} else if (other.tag == "cow") {
-				Destroy (other.gameObject);
+				other.gameObject.GetComponent<cow> ().Shoot ();
 			}
 		}
 	}

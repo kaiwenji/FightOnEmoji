@@ -55,12 +55,12 @@ public class MultiHamaJump : Photon.MonoBehaviour
 		if (Time.time > gum_start_time + 5f) {
 
 			MultiGameControl.instance.frogStop = false;
-			GetComponent<playerAnimation> ().GumExpire ();
+			this.photonView.RPC ("AniGumExpire", PhotonTargets.All);
 		}
 
         if (numOfBullets == 0)
         {
-            GetComponent<playerAnimation>().NoGun();
+			this.photonView.RPC ("AniNoGun", PhotonTargets.All);
         }
     }
 
@@ -111,7 +111,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
 		} else if (collision.tag == "NormalGun") {
 			Debug.Log ("touch NormalGun");
 			collision.gameObject.SetActive (false);
-			transform.GetComponent<playerAnimation> ().GetGun ();
+			this.photonView.RPC ("AniPickGun", PhotonTargets.All);
 			withNormalGun = true;
 			withFireGun = false;
 			withSwapGun = false;
@@ -120,7 +120,8 @@ public class MultiHamaJump : Photon.MonoBehaviour
 		} else if (collision.tag == "FireGun") {
 			Debug.Log ("touch FireGun");
 			collision.gameObject.SetActive (false);
-			transform.GetComponent<playerAnimation> ().GetGun ();
+			this.photonView.RPC ("AniPickGun", PhotonTargets.All);
+
 			withNormalGun = false;
 			withFireGun = true;
 			withSwapGun = false;
@@ -129,14 +130,14 @@ public class MultiHamaJump : Photon.MonoBehaviour
 		} else if (collision.tag == "SwapGun") {
 			Debug.Log ("touch SwapGun");
 			collision.gameObject.SetActive (false);
-			transform.GetComponent<playerAnimation> ().GetGun ();
+			this.photonView.RPC ("AniPickGun", PhotonTargets.All);
 			withNormalGun = false;
 			withFireGun = false;
 			withSwapGun = true;
 			numOfBullets = 5;
 			//GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
 		} else if (collision.tag == "car") {
-			transform.GetComponent<playerAnimation> ().HitByCar ();
+			this.photonView.RPC ("AniHitCar", PhotonTargets.All);
 			GetComponent<HealthScript> ().DamagePlayer (10);
 			//            this.gameObject.GetComponent<SpriteRenderer>().sprite = PlayerHitCar;
 			//            timer_start = true;
@@ -144,13 +145,12 @@ public class MultiHamaJump : Photon.MonoBehaviour
 		} else if (collision.tag == "alien") {
 			Debug.Log ("Player meets a alien");
 			Destroy (collision.gameObject);
-			transform.GetComponent<playerAnimation> ().OnMeet ();
-			StartCoroutine (actionFrozen (2));
-			//IncreaseBar (10);
-			GetComponent<HealthScript> ().IncreaseBar (10);
+			this.photonView.RPC ("AniMeetAlien", PhotonTargets.All);
+
 		} else if (collision.tag == "Water") {
 			Debug.Log ("Player is in water");
-			transform.GetComponent<playerAnimation> ().InWater ();
+			this.photonView.RPC ("AniInWater", PhotonTargets.All);
+
 		} else if (collision.tag == "roof") {
 			Debug.Log ("player is near roof");
 			collision.gameObject.SetActive (false);
@@ -158,7 +158,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
 			collision.gameObject.transform.GetChild (0).gameObject.SetActive (false);
 		} else if (collision.tag == "meat") {
 			GetComponent<HealthScript> ().IncreaseBar (5);
-			Destroy (collision.gameObject);
+			//Destroy (collision.gameObject);
 		} else if (collision.tag == "bullet") {
 			GetComponent<HealthScript> ().DamagePlayer (10);
 			transform.GetComponent<playerAnimation> ().ShootByGun ();
@@ -189,7 +189,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
 //		}
 		if (collision.tag == "Water") {
 			Debug.Log ("Player is getting out of water");
-			transform.GetComponent<playerAnimation> ().OutWater ();
+			this.photonView.RPC ("AniOutWater", PhotonTargets.All);
 		}
         if(collision.tag == "innerRoof")
         {
@@ -234,26 +234,58 @@ public class MultiHamaJump : Photon.MonoBehaviour
 
 	//Animation Part
 	public void PlayerOnFire() {
-		transform.GetComponent<playerAnimation> ().OnFire ();
+		this.photonView.RPC ("PlayerAniFire", PhotonTargets.All);
 	}
 
 	public void PlayerShootByGun() {
+		this.photonView.RPC ("PlayerAniShoot", PhotonTargets.All);
+	}
+
+	[PunRPC]
+	public void PlayerAniFire() {
+		transform.GetComponent<playerAnimation> ().OnFire ();
+	}
+
+	[PunRPC]
+	public void PlayerAniShoot() {
 		transform.GetComponent<playerAnimation> ().ShootByGun ();
 	}
-//	public void ChickenOnFire() {
-//		transform.GetComponent<chickenAnimation> ().OnFire ();
-//	}
-//
-//	public void PigOnFire() {
-//		transform.GetComponent<pigAnimation> ().OnFire ();
-//	}
-//
-//	public void SheepOnFire() {
-//		transform.GetComponent<sheepAnimation> ().OnFire ();
-//	}
-//
-//	public void CowOnFire() {
-//		transform.GetComponent<cowAnimation> ().OnFire ();
-//	}
 
+	[PunRPC]
+	public void AniMeetAlien() {
+		transform.GetComponent<playerAnimation> ().OnMeet ();
+		StartCoroutine (actionFrozen (2));
+		//IncreaseBar (10);
+		GetComponent<HealthScript> ().IncreaseBar (10);
+	}
+
+	[PunRPC]
+	public void AniPickGun() {
+		transform.GetComponent<playerAnimation> ().GetGun ();
+	}
+
+	[PunRPC]
+	public void AniHitCar() {
+		transform.GetComponent<playerAnimation> ().HitByCar ();
+	}
+
+	[PunRPC]
+	public void AniInWater() {
+		transform.GetComponent<playerAnimation> ().InWater ();
+	}
+
+	[PunRPC]
+	public void AniOutWater() {
+		transform.GetComponent<playerAnimation> ().OutWater ();
+	}
+
+	[PunRPC]
+	public void AniGumExpire() {
+		GetComponent<playerAnimation> ().GumExpire ();
+	}
+
+	[PunRPC]
+	public void AniNoGun() {
+		GetComponent<playerAnimation>().NoGun();
+	}
 }

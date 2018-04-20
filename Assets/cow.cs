@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cow : MonoBehaviour {
+public class cow : Photon.MonoBehaviour {
 
-	public Sprite cooked;
+	private bool cooked;
 	// Use this for initialization
 	void Start () {
 
@@ -15,19 +15,33 @@ public class cow : MonoBehaviour {
 
 	}
 	public void Shoot(){
-
-		transform.GetComponent<cowAnimation> ().Shoot ();
+		this.photonView.RPC ("CowAniShoot", PhotonTargets.All);
 	}
 
 	public void OnFire() {
-		transform.GetComponent<cowAnimation> ().OnFire ();
-		transform.tag = "meat";
+		this.photonView.RPC ("CowAniFire", PhotonTargets.All);
 	}
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Bomb")
         {
             OnFire();
-        }
+		} else if ((collision.tag == "localPlayer" || collision.tag == "Player") && cooked) {
+			this.photonView.RPC ("CowAniShoot", PhotonTargets.All);
+		}
     }
+
+	[PunRPC]
+	public void CowAniShoot() {
+		//transform.GetComponent<cowAnimation> ().Shoot ();
+		Destroy(gameObject);
+	}
+
+	[PunRPC]
+	public void CowAniFire() {
+		transform.GetComponent<cowAnimation> ().OnFire ();
+		transform.tag = "meat";
+		cooked = true;
+	}
 }
