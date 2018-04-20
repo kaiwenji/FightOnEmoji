@@ -32,7 +32,7 @@ public class VersusScript : Photon.MonoBehaviour {
         }
 		if(isStarted && Time.time - startTime > 3f)
         {
-            MultiGameControl.instance.endVs();
+            //MultiGameControl.instance.endVs();
             this.photonView.RPC("endFight", PhotonTargets.All, counter > enemyCounter);
         }
 	}

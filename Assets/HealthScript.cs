@@ -7,8 +7,8 @@ public class HealthScript : Photon.MonoBehaviour
     public int maxHealth = 100;
     public int _curHealth;
     public StatusIndicator background;
-	public bool playerOnFire = false;
-	public bool inWater = false;
+    public bool playerOnFire = false;
+    public bool inWater = false;
 
 
     public int curHealth
@@ -31,30 +31,43 @@ public class HealthScript : Photon.MonoBehaviour
         }
     }
 
-	void Update()
-	{
-		if (inWater)
-		{
-			StopCoroutine (fireHarmPlayer ());
-			playerOnFire = false;
-		}
-	}
+    void Update()
+    {
+        if (inWater)
+        {
+            StopCoroutine(fireHarmPlayer());
+            playerOnFire = false;
+        }
+    }
 
     public void DamagePlayer(int damage)
     {
-        curHealth -= damage;
-               if (curHealth <= 0)
-             {
+        //curHealth -= damage;
+        //  if (curHealth <= 0)
+        //{
         //kill the player
-               MultiGameControl.instance.GameOver();
-           }
+        if (this.tag.Equals("localPlayer"))
+        {
+            curHealth -= damage;
+            if (curHealth <= 0)
+            {
+                MultiGameControl.instance.GameOver();
+            }
+            this.photonView.RPC("setHealthBar", PhotonTargets.All, curHealth);
+        }
 
-        this.photonView.RPC("setHealthBar", PhotonTargets.All, curHealth);
+        //}
+
+
     }
     public void IncreaseBar(int increase)
     {
-        curHealth += increase;
-        this.photonView.RPC("setHealthBar", PhotonTargets.All, curHealth);
+        if (this.tag.Equals("localPlayer"))
+        {
+            curHealth = Mathf.Max(curHealth + increase, 100);
+            this.photonView.RPC("setHealthBar", PhotonTargets.All, curHealth);
+        }
+
     }
     [PunRPC]
     public void setHealthBar(int health)
@@ -63,19 +76,20 @@ public class HealthScript : Photon.MonoBehaviour
         statusIndicator.SetHealth(curHealth, maxHealth);
     }
 
-	public void catchFire()
-	{
-		StartCoroutine(fireHarmPlayer());
-		playerOnFire = true;
-	}
+    public void catchFire()
+    {
+        StartCoroutine(fireHarmPlayer());
+        playerOnFire = true;
+    }
 
-	IEnumerator fireHarmPlayer()
-	{
-		int i = 10;
-		while(i > 0) {
-			yield return new WaitForSeconds(0.5f);
-			DamagePlayer (2);
-			i--;
-		}
-	}
+    IEnumerator fireHarmPlayer()
+    {
+        int i = 10;
+        while (i > 0)
+        {
+            yield return new WaitForSeconds(0.5f);
+            DamagePlayer(2);
+            i--;
+        }
+    }
 }

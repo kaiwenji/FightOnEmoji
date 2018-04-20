@@ -68,4 +68,6 @@ MonoBehaviour:
   - AniPickGun
   - PlayerAniFire
   - PlayerAniShoot
+  - setPlayerNumber
+  - tellGameOver
   DisableAutoOpenWizard: 1
