@@ -227,8 +227,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114838150631505000}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 2
-  instantiationId: 2
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114109735011298698
@@ -331,8 +331,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114739755196648548}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 4
-  instantiationId: 4
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114592626062142996
@@ -372,8 +372,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 1
-  instantiationId: 1
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114735054580885022
@@ -398,8 +398,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114855678191949506}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 5
-  instantiationId: 5
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114739755196648548
@@ -504,8 +504,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114167386312748890}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 3
-  instantiationId: 3
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114832346040705432
