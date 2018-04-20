@@ -162,6 +162,10 @@ public class MultiHamaJump : Photon.MonoBehaviour
 			gameObject.GetComponent<MultiHamaJump> ().PlayerOnFire ();
 			GetComponent<HealthScript> ().catchFire();
 		}
+        else if(collision.tag == "swapBullet")
+        {
+            transPos(collision.gameObject.GetComponent<BulletScript>().shooter);
+        }
     }
 	IEnumerator actionFrozen(int duration)
     {
@@ -212,7 +216,16 @@ public class MultiHamaJump : Photon.MonoBehaviour
             //this.photonView.RPC("stepBack", PhotonTargets.MasterClient);
         }
     }
-
+    public void transPos(GameObject shooter)
+    {
+        if (shooter == null || !shooter.tag.Equals("localPlayer"))
+        {
+            return;
+        }
+        int temp = transform.GetComponent<HealthScript>().curHealth;
+        GetComponent<HealthScript>().setHealth(shooter.transform.GetComponent<HealthScript>().curHealth);
+        shooter.transform.GetComponent<HealthScript>().setHealth(temp);
+    }
     [PunRPC]
     public void stepBack()
     {

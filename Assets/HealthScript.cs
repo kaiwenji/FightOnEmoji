@@ -42,10 +42,6 @@ public class HealthScript : Photon.MonoBehaviour
 
     public void DamagePlayer(int damage)
     {
-        //curHealth -= damage;
-        //  if (curHealth <= 0)
-        //{
-        //kill the player
         if (this.tag.Equals("localPlayer"))
         {
             curHealth -= damage;
@@ -56,10 +52,15 @@ public class HealthScript : Photon.MonoBehaviour
             this.photonView.RPC("setHealthBar", PhotonTargets.All, curHealth);
         }
 
-        //}
-
 
     }
+
+    public void setHealth(int health)
+    {
+        this.photonView.RPC("setHealthBar", PhotonTargets.All, health);
+    }
+
+
     public void IncreaseBar(int increase)
     {
         if (this.tag.Equals("localPlayer"))
