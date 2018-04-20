@@ -5,7 +5,7 @@ using UnityEngine;
 public class MultiBomb : MonoBehaviour {
     // Use this for initialization
     public Sprite exploImage;
-    private int counter = 5;
+    private int counter = 1;
     private GUIStyle fontStyle;
 	void Start () {
         GetComponent<CircleCollider2D>().enabled = false;
