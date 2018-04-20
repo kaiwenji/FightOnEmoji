@@ -84,7 +84,7 @@ public class HealthScript : Photon.MonoBehaviour
 
     IEnumerator fireHarmPlayer()
     {
-        int i = 10;
+        int i = 5;
         while (i > 0)
         {
             yield return new WaitForSeconds(0.5f);

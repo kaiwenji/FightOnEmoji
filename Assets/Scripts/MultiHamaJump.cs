@@ -139,6 +139,8 @@ public class MultiHamaJump : Photon.MonoBehaviour
 		} else if (collision.tag == "alien") {
 			Debug.Log ("Player meets a alien");
 			Destroy (collision.gameObject);
+			GetComponent<HealthScript> ().IncreaseBar (20);
+
 			this.photonView.RPC ("AniMeetAlien", PhotonTargets.All);
 
 		} else if (collision.tag == "Water") {
@@ -151,10 +153,10 @@ public class MultiHamaJump : Photon.MonoBehaviour
 		} else if (collision.tag == "innerRoof") {
 			collision.gameObject.transform.GetChild (0).gameObject.SetActive (false);
 		} else if (collision.tag == "meat") {
-			GetComponent<HealthScript> ().IncreaseBar (5);
+			GetComponent<HealthScript> ().IncreaseBar (7);
 			//Destroy (collision.gameObject);
 		} else if (collision.tag == "bullet") {
-			GetComponent<HealthScript> ().DamagePlayer (10);
+			GetComponent<HealthScript> ().DamagePlayer (30);
 			transform.GetComponent<playerAnimation> ().ShootByGun ();
 		} else if (collision.tag == "fireball") {
 			gameObject.GetComponent<MultiHamaJump> ().PlayerOnFire ();
@@ -250,7 +252,6 @@ public class MultiHamaJump : Photon.MonoBehaviour
 		transform.GetComponent<playerAnimation> ().OnMeet ();
 		StartCoroutine (actionFrozen (2));
 		//IncreaseBar (10);
-		GetComponent<HealthScript> ().IncreaseBar (10);
 	}
 
 	[PunRPC]
