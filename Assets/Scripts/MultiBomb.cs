@@ -22,7 +22,7 @@ public class MultiBomb : MonoBehaviour {
 	}
     IEnumerator loseTime()
     {
-        Debug.Log("start count");
+//        Debug.Log("start count");
         while (true)
         {
             yield return new WaitForSeconds(1);

@@ -86,7 +86,6 @@ public class MultiHamaJump : Photon.MonoBehaviour
     {
 
 		if (collision.tag == "Bomb") {
-			Debug.Log ("touch bomb");
 			Vector3 vector = transform.position - collision.gameObject.transform.position;
 			startPos = transform.position;
 			endPos = transform.position + (10 / vector.magnitude) * vector;

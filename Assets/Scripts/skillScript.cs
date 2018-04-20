@@ -32,12 +32,14 @@ public class skillScript : MonoBehaviour {
 			bombBtn.gameObject.SetActive (true);
 			hasBomb = true;
 			bombCounter = 5;
+			Destroy (collision.gameObject);
 		} 
 		else if (collision.tag == "chewingGum" && !hasGum) 
 		{
 			gumBtn.gameObject.SetActive (true);
 			hasGum = true;
 			gumCounter = 5;
+			Destroy (collision.gameObject);
 		}
 	}
 
@@ -51,11 +53,11 @@ public class skillScript : MonoBehaviour {
 			return;
 		}
 		GameObject bomb = PhotonNetwork.Instantiate ("Bomb", transform.position, transform.rotation, 0);
-		Vector3 direction = transform.GetChild (0).transform.position - transform.position;
-		direction /= Vector3.Magnitude (direction);
-		Vector3 startPos = transform.position;
-		Vector3 endPos = transform.position + direction;
-		bomb.transform.position = startPos;
+//		Vector3 direction = transform.GetChild (0).transform.position - transform.position;
+//		direction /= Vector3.Magnitude (direction);
+//		Vector3 startPos = transform.position;
+//		Vector3 endPos = transform.position + direction;
+//		bomb.transform.position = startPos;
 
 		bombCounter--;
 	}
@@ -69,7 +71,7 @@ public class skillScript : MonoBehaviour {
 			return;
 		}
 		Vector3 startPos = transform.position;
-		startPos.y += 100;
+		startPos.y += 50;
 		GameObject gum = PhotonNetwork.Instantiate ("ChewingGum", startPos, transform.rotation, 0);
 
 		gumCounter--;

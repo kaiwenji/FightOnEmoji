@@ -30,7 +30,7 @@ public class NetworkManager : MonoBehaviour {
         
         
         int index = PhotonNetwork.player.ID;
-        Debug.Log("instantiate a new role: " + index);
+//        Debug.Log("instantiate a new role: " + index);
         if (index == 1)
         {
             PhotonNetwork.Instantiate(prefabName, startPoint1.position, startPoint1.rotation, 0);
