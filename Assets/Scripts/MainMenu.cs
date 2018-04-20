@@ -14,8 +14,9 @@ public class MainMenu : MonoBehaviour {
 
 	public void TwoPlayerGame() {
 		SceneNum = "two";
-		SceneManager.LoadScene (3);
-		Debug.Log ("Loading two players mode...");
+		SceneManager.LoadScene (4);
+		Debug.Log ("Loading two players beginnig menu...");
+
 	}
 
 	public void QuitGame() {
