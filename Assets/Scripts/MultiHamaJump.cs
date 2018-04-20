@@ -102,12 +102,6 @@ public class MultiHamaJump : Photon.MonoBehaviour
 			gum_start_time = Time.time;
 
 			//GetComponent<playerAnimation> ().GumExpire ();
-		} else if (collision.tag == "Banana") {
-			Debug.Log ("touch banana");
-			StartCoroutine (actionFrozen (1));
-			int x = Random.Range (-200, 200);
-			int y = Random.Range (-200, 200);
-			rb.AddForce (new Vector3 (x, y, 0));
 		} else if (collision.tag == "NormalGun") {
 			Debug.Log ("touch NormalGun");
 			collision.gameObject.SetActive (false);
