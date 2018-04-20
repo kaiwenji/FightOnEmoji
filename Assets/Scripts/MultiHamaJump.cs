@@ -14,7 +14,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
 
     //private bool timer_start = false;
     private float start_time;
-	private float gum_start_time;
+	private float gum_start_time = -1;
     //private float interval = 1f;
     public Sprite doodle;
     public float force;
@@ -52,7 +52,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
             }
 
         }
-		if (Time.time > gum_start_time + 5f) {
+		if (gum_start_time > 0 && Time.time > gum_start_time + 5f) {
 
 			MultiGameControl.instance.frogStop = false;
 			this.photonView.RPC ("AniGumExpire", PhotonTargets.All);

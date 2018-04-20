@@ -8,7 +8,7 @@ public class NetworkManager : MonoBehaviour {
     public string prefabName = "frog";
     public string circlePrefab = "Circle";
     public string gameControlPrefab = "GameControl";
-    public Transform startPoint1, startPoint2;
+    public Transform startPoint1, startPoint2, startPoint3, startPoint4;
 	// Use this for initialization
 	void Start () {
         Debug.Log("connect to server");
@@ -21,20 +21,31 @@ public class NetworkManager : MonoBehaviour {
         RoomOptions roomOptions = new RoomOptions()
         {
             IsVisible = false,
-            MaxPlayers = 6
+            MaxPlayers = 4
         };
         PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
     }
     void OnJoinedRoom()
     {
-        Debug.Log("instantiate a new role");
-        if (PhotonNetwork.isMasterClient)
+        
+        
+        int index = PhotonNetwork.player.ID;
+        Debug.Log("instantiate a new role: " + index);
+        if (index == 1)
+        {
+            PhotonNetwork.Instantiate(prefabName, startPoint1.position, startPoint1.rotation, 0);
+        }
+        else if(index == 2)
         {
             PhotonNetwork.Instantiate(prefabName, startPoint2.position, startPoint2.rotation, 0);
         }
+        else if(index == 3)
+        {
+            PhotonNetwork.Instantiate(prefabName, startPoint3.position, startPoint3.rotation, 0);
+        }
         else
         {
-            PhotonNetwork.Instantiate(prefabName, startPoint1.position, startPoint1.rotation, 0);
+            PhotonNetwork.Instantiate(prefabName, startPoint4.position, startPoint4.rotation, 0);
         }
     }
     void OnCreatedRoom()

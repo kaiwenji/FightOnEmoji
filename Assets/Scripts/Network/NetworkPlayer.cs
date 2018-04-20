@@ -18,6 +18,8 @@ public class NetworkPlayer : Photon.MonoBehaviour
         }
         else
         {
+            transform.Find("locationMarker").gameObject.SetActive(false);
+            //Destroy(transform.GetChild(2).gameObject);
             Destroy(GetComponent<Rigidbody2D>());
             Destroy(GetComponent<joystickScript>());
         }

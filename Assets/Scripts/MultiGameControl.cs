@@ -13,6 +13,7 @@ public class MultiGameControl : Photon.PunBehaviour
     private float startTime;
     public GUIStyle myStyle;
     public bool frogStop;
+    public bool gameStart = false;
     //public GameObject terminalObj;
     // Use this for initialization
     void Awake()
@@ -26,14 +27,14 @@ public class MultiGameControl : Photon.PunBehaviour
             Destroy(gameObject);
         }
         gameOver = false;
-        frogStop = false;
+        frogStop = true;
         youDied = false;
-        numberOfAlive = 4;
+        numberOfAlive = 0;
         myStyle.normal.textColor = Color.white;
         myStyle.fontSize = 60;
         myStyle.fontStyle = FontStyle.Bold;
         myStyle.alignment = TextAnchor.MiddleCenter;
-        //this.photonView.RPC("setPlayerNumber", PhotonTargets.All);
+        this.photonView.RPC("updatePlayerNumber", PhotonTargets.MasterClient);
 
     }
 
@@ -50,6 +51,10 @@ public class MultiGameControl : Photon.PunBehaviour
     private void OnGUI()
     {
         string res = numberOfAlive.ToString();
+        if (!gameStart)
+        {
+            res = "Wait For Your Opponents...";
+        }
         if (gameOver)
         {
             res = "You Win!";
@@ -81,11 +86,27 @@ public class MultiGameControl : Photon.PunBehaviour
         }
     }
     [PunRPC]
-    public void setPlayerNumber()
+    public void updatePlayerNumber()
     {
         Debug.Log("set player number");
-        numberOfAlive = PhotonNetwork.countOfPlayersInRooms + 1;
+        numberOfAlive += 1;
+        if(numberOfAlive == 4)
+        {
+            this.photonView.RPC("startGame", PhotonTargets.All);
+        }
         Debug.Log("number is" + numberOfAlive);
+        this.photonView.RPC("setPlayerNumber", PhotonTargets.Others, numberOfAlive);
+    }
+    [PunRPC]
+    public void startGame()
+    {
+        this.gameStart = true;
+        this.frogStop = false;
+    }
+    [PunRPC]
+    public void setPlayerNumber(int number)
+    {
+        numberOfAlive = number;
     }
 
 

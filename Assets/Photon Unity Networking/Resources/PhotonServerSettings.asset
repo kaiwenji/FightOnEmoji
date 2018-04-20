@@ -70,4 +70,6 @@ MonoBehaviour:
   - PlayerAniShoot
   - setPlayerNumber
   - tellGameOver
+  - updatePlayerNumber
+  - startGame
   DisableAutoOpenWizard: 1

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114247812116674296}
   - component: {fileID: 114832134900577798}
   - component: {fileID: 114893443071711774}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: outerCircle
   m_TagString: Circle
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 114418370413251798}
   - component: {fileID: 114273274611381474}
   - component: {fileID: 114864623311500914}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: innerCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 4485545672801538}
   - component: {fileID: 114627585097467818}
   - component: {fileID: 114878126173648110}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Circle
   m_TagString: Fountain
   m_Icon: {fileID: 0}
