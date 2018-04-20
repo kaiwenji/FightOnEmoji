@@ -42,6 +42,7 @@ TagManager:
   - bullet
   - Toast
   - fireball
+  - SwapEffect
   layers:
   - Default
   - TransparentFX

@@ -14,7 +14,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
 
     //private bool timer_start = false;
     private float start_time;
-	private float gum_start_time = -1;
+    private float gum_start_time = -1;
     //private float interval = 1f;
     public Sprite doodle;
     public float force;
@@ -37,7 +37,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
     {
         if (dizzy)
         {
-			transform.GetComponent<playerAnimation> ().Bomb ();
+            transform.GetComponent<playerAnimation>().Bomb();
             float distCovered = (Time.time - start_time) * speed;
             float fracJourney = distCovered / journeyLength;
             transform.position = Vector3.Lerp(startPos, endPos, fracJourney);
@@ -52,22 +52,23 @@ public class MultiHamaJump : Photon.MonoBehaviour
             }
 
         }
-		if (gum_start_time > 0 && Time.time > gum_start_time + 5f) {
+        if (gum_start_time > 0 && Time.time > gum_start_time + 5f)
+        {
 
-			MultiGameControl.instance.frogStop = false;
-			this.photonView.RPC ("AniGumExpire", PhotonTargets.All);
-		}
+            MultiGameControl.instance.frogStop = false;
+            this.photonView.RPC("AniGumExpire", PhotonTargets.All);
+        }
 
         if (numOfBullets == 0)
         {
-			this.photonView.RPC ("AniNoGun", PhotonTargets.All);
+            this.photonView.RPC("AniNoGun", PhotonTargets.All);
         }
     }
 
     void FixedUpdate()
     {
 
-       // DamagePlayer(10);
+        // DamagePlayer(10);
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -85,89 +86,114 @@ public class MultiHamaJump : Photon.MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-		if (collision.tag == "Bomb") {
-			Vector3 vector = transform.position - collision.gameObject.transform.position;
-			startPos = transform.position;
-			endPos = transform.position + (10 / vector.magnitude) * vector;
-			journeyLength = Vector3.Distance (startPos, endPos);
-			speed = journeyLength;
-			start_time = Time.time;
-			dizzy = true;
-			StartCoroutine (actionFrozen (1));
-			GetComponent<HealthScript> ().DamagePlayer (20);
-		} else if (collision.tag == "ChewingGum") {
-			Destroy (collision.gameObject);
-			MultiGameControl.instance.frogStop = true;
-			GetComponent<playerAnimation> ().StepOnGum ();
-			gum_start_time = Time.time;
+        if (collision.tag == "Bomb")
+        {
+            Vector3 vector = transform.position - collision.gameObject.transform.position;
+            startPos = transform.position;
+            endPos = transform.position + (10 / vector.magnitude) * vector;
+            journeyLength = Vector3.Distance(startPos, endPos);
+            speed = journeyLength;
+            start_time = Time.time;
+            dizzy = true;
+            StartCoroutine(actionFrozen(1));
+            GetComponent<HealthScript>().DamagePlayer(20);
+        }
+        else if (collision.tag == "ChewingGum")
+        {
+            Destroy(collision.gameObject);
+            MultiGameControl.instance.frogStop = true;
+            GetComponent<playerAnimation>().StepOnGum();
+            gum_start_time = Time.time;
 
-			//GetComponent<playerAnimation> ().GumExpire ();
-		} else if (collision.tag == "NormalGun") {
-			Debug.Log ("touch NormalGun");
-			collision.gameObject.SetActive (false);
-			this.photonView.RPC ("AniPickGun", PhotonTargets.All);
-			withNormalGun = true;
-			withFireGun = false;
-			withSwapGun = false;
-			numOfBullets = 5;
-			//GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
-		} else if (collision.tag == "FireGun") {
-			Debug.Log ("touch FireGun");
-			collision.gameObject.SetActive (false);
-			this.photonView.RPC ("AniPickGun", PhotonTargets.All);
+            //GetComponent<playerAnimation> ().GumExpire ();
+        }
+        else if (collision.tag == "NormalGun")
+        {
+            Debug.Log("touch NormalGun");
+            collision.gameObject.SetActive(false);
+            this.photonView.RPC("AniPickGun", PhotonTargets.All);
+            withNormalGun = true;
+            withFireGun = false;
+            withSwapGun = false;
+            numOfBullets = 5;
+            //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
+        }
+        else if (collision.tag == "FireGun")
+        {
+            Debug.Log("touch FireGun");
+            collision.gameObject.SetActive(false);
+            this.photonView.RPC("AniPickGun", PhotonTargets.All);
 
-			withNormalGun = false;
-			withFireGun = true;
-			withSwapGun = false;
-			numOfBullets = 5;
-			//GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
-		} else if (collision.tag == "SwapGun") {
-			Debug.Log ("touch SwapGun");
-			collision.gameObject.SetActive (false);
-			this.photonView.RPC ("AniPickGun", PhotonTargets.All);
-			withNormalGun = false;
-			withFireGun = false;
-			withSwapGun = true;
-			numOfBullets = 5;
-			//GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
-		} else if (collision.tag == "car") {
-			this.photonView.RPC ("AniHitCar", PhotonTargets.All);
-			GetComponent<HealthScript> ().DamagePlayer (10);
-			//            this.gameObject.GetComponent<SpriteRenderer>().sprite = PlayerHitCar;
-			//            timer_start = true;
-			//            start_time = Time.time;
-		} else if (collision.tag == "alien") {
-			Debug.Log ("Player meets a alien");
-			Destroy (collision.gameObject);
-			//GetComponent<HealthScript> ().IncreaseBar (20);
+            withNormalGun = false;
+            withFireGun = true;
+            withSwapGun = false;
+            numOfBullets = 5;
+            //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
+        }
+        else if (collision.tag == "SwapGun")
+        {
+            Debug.Log("touch SwapGun");
+            collision.gameObject.SetActive(false);
+            this.photonView.RPC("AniPickGun", PhotonTargets.All);
+            withNormalGun = false;
+            withFireGun = false;
+            withSwapGun = true;
+            numOfBullets = 5;
+            //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("withGun");
+        }
+        else if (collision.tag == "car")
+        {
+            this.photonView.RPC("AniHitCar", PhotonTargets.All);
+            GetComponent<HealthScript>().DamagePlayer(10);
+            //            this.gameObject.GetComponent<SpriteRenderer>().sprite = PlayerHitCar;
+            //            timer_start = true;
+            //            start_time = Time.time;
+        }
+        else if (collision.tag == "alien")
+        {
+            Debug.Log("Player meets a alien");
+            Destroy(collision.gameObject);
+            //GetComponent<HealthScript> ().IncreaseBar (20);
 
-			this.photonView.RPC ("AniMeetAlien", PhotonTargets.All);
+            this.photonView.RPC("AniMeetAlien", PhotonTargets.All);
 
-		} else if (collision.tag == "Water") {
-			Debug.Log ("Player is in water");
-			this.photonView.RPC ("AniInWater", PhotonTargets.All);
+        }
+        else if (collision.tag == "Water")
+        {
+            Debug.Log("Player is in water");
+            this.photonView.RPC("AniInWater", PhotonTargets.All);
 
-		} else if (collision.tag == "roof") {
-			Debug.Log ("player is near roof");
-			collision.gameObject.SetActive (false);
-		} else if (collision.tag == "innerRoof") {
-			collision.gameObject.transform.GetChild (0).gameObject.SetActive (false);
-		} else if (collision.tag == "meat") {
-			//GetComponent<HealthScript> ().IncreaseBar (7);
-			//Destroy (collision.gameObject);
-		} else if (collision.tag == "bullet") {
-			GetComponent<HealthScript> ().DamagePlayer (30);
-			transform.GetComponent<playerAnimation> ().ShootByGun ();
-		} else if (collision.tag == "fireball") {
-			gameObject.GetComponent<MultiHamaJump> ().PlayerOnFire ();
-			GetComponent<HealthScript> ().catchFire();
-		}
-        else if(collision.tag == "swapBullet")
+        }
+        else if (collision.tag == "roof")
+        {
+            Debug.Log("player is near roof");
+            collision.gameObject.SetActive(false);
+        }
+        else if (collision.tag == "innerRoof")
+        {
+            collision.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        }
+        else if (collision.tag == "meat")
+        {
+            //GetComponent<HealthScript> ().IncreaseBar (7);
+            //Destroy (collision.gameObject);
+        }
+        else if (collision.tag == "bullet")
+        {
+            GetComponent<HealthScript>().DamagePlayer(30);
+            transform.GetComponent<playerAnimation>().ShootByGun();
+        }
+        else if (collision.tag == "fireball")
+        {
+            gameObject.GetComponent<MultiHamaJump>().PlayerOnFire();
+            GetComponent<HealthScript>().catchFire();
+        }
+        else if (collision.tag == "SwapEffect")
         {
             transPos(collision.gameObject.GetComponent<BulletScript>().shooter);
         }
     }
-	IEnumerator actionFrozen(int duration)
+    IEnumerator actionFrozen(int duration)
     {
         MultiGameControl.instance.frogStop = true;
         yield return new WaitForSeconds(duration);
@@ -180,18 +206,19 @@ public class MultiHamaJump : Photon.MonoBehaviour
     {
         if (collision.tag == "Circle")
         {
-//            Debug.Log("get collider");
+            //            Debug.Log("get collider");
             MultiGameControl.instance.GameOver();
         }
-//		if (collision.tag == "roof") {
-//			Debug.Log ("player leaves the room");
-//			collision.gameObject.SetActive(true);
-//		}
-		if (collision.tag == "Water") {
-			Debug.Log ("Player is getting out of water");
-			this.photonView.RPC ("AniOutWater", PhotonTargets.All);
-		}
-        if(collision.tag == "innerRoof")
+        //		if (collision.tag == "roof") {
+        //			Debug.Log ("player leaves the room");
+        //			collision.gameObject.SetActive(true);
+        //		}
+        if (collision.tag == "Water")
+        {
+            Debug.Log("Player is getting out of water");
+            this.photonView.RPC("AniOutWater", PhotonTargets.All);
+        }
+        if (collision.tag == "innerRoof")
         {
             collision.gameObject.transform.GetChild(0).gameObject.SetActive(true);
         }
@@ -230,7 +257,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
     public void stepBack()
     {
         enemyPos = GameObject.FindWithTag("Player").transform.position;
-         Vector3 pos = transform.position - enemyPos;
+        Vector3 pos = transform.position - enemyPos;
         if (!photonView.isMine)
         {
             return;
@@ -241,59 +268,70 @@ public class MultiHamaJump : Photon.MonoBehaviour
     }
 
 
-	//Animation Part
-	public void PlayerOnFire() {
-		this.photonView.RPC ("PlayerAniFire", PhotonTargets.All);
-	}
+    //Animation Part
+    public void PlayerOnFire()
+    {
+        this.photonView.RPC("PlayerAniFire", PhotonTargets.All);
+    }
 
-	public void PlayerShootByGun() {
-		this.photonView.RPC ("PlayerAniShoot", PhotonTargets.All);
-	}
+    public void PlayerShootByGun()
+    {
+        this.photonView.RPC("PlayerAniShoot", PhotonTargets.All);
+    }
 
-	[PunRPC]
-	public void PlayerAniFire() {
-		transform.GetComponent<playerAnimation> ().OnFire ();
-	}
+    [PunRPC]
+    public void PlayerAniFire()
+    {
+        transform.GetComponent<playerAnimation>().OnFire();
+    }
 
-	[PunRPC]
-	public void PlayerAniShoot() {
-		transform.GetComponent<playerAnimation> ().ShootByGun ();
-	}
+    [PunRPC]
+    public void PlayerAniShoot()
+    {
+        transform.GetComponent<playerAnimation>().ShootByGun();
+    }
 
-	[PunRPC]
-	public void AniMeetAlien() {
-		transform.GetComponent<playerAnimation> ().OnMeet ();
-		StartCoroutine (actionFrozen (2));
-		//IncreaseBar (10);
-	}
+    [PunRPC]
+    public void AniMeetAlien()
+    {
+        transform.GetComponent<playerAnimation>().OnMeet();
+        StartCoroutine(actionFrozen(2));
+        //IncreaseBar (10);
+    }
 
-	[PunRPC]
-	public void AniPickGun() {
-		transform.GetComponent<playerAnimation> ().GetGun ();
-	}
+    [PunRPC]
+    public void AniPickGun()
+    {
+        transform.GetComponent<playerAnimation>().GetGun();
+    }
 
-	[PunRPC]
-	public void AniHitCar() {
-		transform.GetComponent<playerAnimation> ().HitByCar ();
-	}
+    [PunRPC]
+    public void AniHitCar()
+    {
+        transform.GetComponent<playerAnimation>().HitByCar();
+    }
 
-	[PunRPC]
-	public void AniInWater() {
-		transform.GetComponent<playerAnimation> ().InWater ();
-	}
+    [PunRPC]
+    public void AniInWater()
+    {
+        transform.GetComponent<playerAnimation>().InWater();
+    }
 
-	[PunRPC]
-	public void AniOutWater() {
-		transform.GetComponent<playerAnimation> ().OutWater ();
-	}
+    [PunRPC]
+    public void AniOutWater()
+    {
+        transform.GetComponent<playerAnimation>().OutWater();
+    }
 
-	[PunRPC]
-	public void AniGumExpire() {
-		GetComponent<playerAnimation> ().GumExpire ();
-	}
+    [PunRPC]
+    public void AniGumExpire()
+    {
+        GetComponent<playerAnimation>().GumExpire();
+    }
 
-	[PunRPC]
-	public void AniNoGun() {
-		GetComponent<playerAnimation>().NoGun();
-	}
+    [PunRPC]
+    public void AniNoGun()
+    {
+        GetComponent<playerAnimation>().NoGun();
+    }
 }

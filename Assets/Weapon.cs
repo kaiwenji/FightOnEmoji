@@ -61,8 +61,18 @@ public class Weapon : MonoBehaviour {
 					ShootFireBall ();
 				}
 			}
-		}
-	}
+        }
+        else if (transform.parent.tag == "localPlayer" && MultiHamaJump.withSwapGun)
+        {
+            if (FireButton.pressFireButton && Time.time > timeToFire && MultiHamaJump.numOfBullets > 0)
+            {
+                timeToFire = Time.time + fireInterval;
+                ShootSwapEffect();
+                FireButton.pressFireButton = false;
+                MultiHamaJump.numOfBullets--;
+            }
+        }
+    }
 
 	void Shoot () {
 		GameObject trail = PhotonNetwork.Instantiate("BulletTrail", firePoint.position, firePoint.rotation, 0);
@@ -77,6 +87,17 @@ public class Weapon : MonoBehaviour {
 		Debug.Log ("fire pos:" + fire.transform.position);
 		fire.transform.position = firePoint.position;
 	}
+
+    void ShootSwapEffect()
+    {
+        GameObject fire = PhotonNetwork.Instantiate("SwapEffect", firePoint.position, firePoint.rotation, 0);
+        Vector3 direction = firePoint.position - firePoint.parent.position;
+        direction = direction * 20 / direction.magnitude;
+        fire.GetComponent<Rigidbody2D>().velocity = direction * 5;
+        Destroy(fire.gameObject, 1f);
+
+        fire.transform.GetComponent<BulletScript>().shooter = transform.parent.gameObject;
+    }
 
     void hideToast()
     {
