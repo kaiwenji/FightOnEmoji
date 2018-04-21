@@ -89,8 +89,8 @@ public class skillScript : MonoBehaviour
 			gumBtn.gameObject.SetActive(false);
 			return;
 		}
-        Vector3 startPos = transform.position;
-        startPos.y += 3;
+		Vector3 startPos = transform.position - transform.GetChild(0).transform.position;
+		startPos = transform.position + startPos * 3 / startPos.magnitude;
         GameObject gum = PhotonNetwork.Instantiate("ChewingGum", startPos, transform.rotation, 0);
 
 		gumCounter--;
