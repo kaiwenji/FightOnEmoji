@@ -82,9 +82,9 @@ public class HealthScript : Photon.MonoBehaviour
     {
         curHealth = health;
         if (curHealth <= 0) {
-	//            if (this.tag == "localPlayer") {
-	//                MultiGameControl.instance.GameOver ();
-	//            }
+	            if (this.tag == "localPlayer") {
+	                MultiGameControl.instance.GameOver ();
+	            }
 	            GetComponent<playerAnimation>().Died();
 	            GetComponent<MultiHamaJump>().enabled = false;
 	            //GetComponent<HealthScript>().enabled = false;
@@ -94,9 +94,7 @@ public class HealthScript : Photon.MonoBehaviour
 	            GetComponent<BoxCollider2D>().enabled = false;
 	            //frog.gameObject.tag = "ghost";
 
-	            GameObject fireButton = GameObject.FindWithTag("FireButton");
-	            fireButton.gameObject.SetActive (false); 
-
+	            
 
 	        }    
 	        statusIndicator.SetHealth(curHealth, maxHealth);

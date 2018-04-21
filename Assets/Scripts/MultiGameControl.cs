@@ -75,8 +75,10 @@ public class MultiGameControl : Photon.PunBehaviour
         }
         youDied = true;
 
+		GameObject fireButton = GameObject.FindWithTag("FireButton");
+		fireButton.gameObject.SetActive (false); 
 
-        //frog.gameObject.GetComponent<FireButton> ().enabled = false;
+
 
         Debug.Log("is Died: " + youDied);
         this.photonView.RPC("tellGameOver", PhotonTargets.All, PhotonNetwork.player.name);

@@ -100,7 +100,9 @@ public class MultiHamaJump : Photon.MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
+		if (dizzy) {
+			return;
+		}
         if (collision.tag == "Bomb")
         {
             Vector3 vector = transform.position - collision.gameObject.transform.position;
@@ -207,7 +209,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
         }
         else if (collision.tag == "SwapEffect")
         {
-            transPos(collision.gameObject.GetComponent<BulletScript>().shooter);
+            transPos(collision.gameObject.GetComponent<SwapBullet>().shooter);
         }
     }
     IEnumerator actionFrozen(int duration)
@@ -267,6 +269,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
         {
             return;
         }
+		Debug.Log ("localPlayer");
         int temp = transform.GetComponent<HealthScript>().curHealth;
         GetComponent<HealthScript>().setHealth(shooter.transform.GetComponent<HealthScript>().curHealth);
         shooter.transform.GetComponent<HealthScript>().setHealth(temp);
