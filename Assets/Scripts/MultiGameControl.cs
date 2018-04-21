@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class MultiGameControl : Photon.PunBehaviour
 {
+    public List<string> rankList = new List<string>();
+
     public static MultiGameControl instance;
     public bool gameOver;
     private bool youDied;
@@ -46,7 +48,7 @@ public class MultiGameControl : Photon.PunBehaviour
             Time.timeScale = 0f;
         }
     }
-		
+
     private void OnGUI()
     {
         string res = numberOfAlive.ToString();
@@ -61,7 +63,7 @@ public class MultiGameControl : Photon.PunBehaviour
             {
                 res = "You Lose!";
             }
-			SceneManager.LoadScene ("Menu");
+            Invoke("ReturnToMenu", 10f);
         }
         GUI.Box(new Rect(325, -325, Screen.height, Screen.width), res, myStyle);
     }
@@ -73,30 +75,42 @@ public class MultiGameControl : Photon.PunBehaviour
         }
         youDied = true;
 
-		Debug.Log ("Now you dieeeeeee");
-		GameObject frog = GameObject.FindWithTag ("localPlayer");
-		Debug.Log (frog.tag);
-		frog.gameObject.GetComponent<playerAnimation> ().Died ();
-		frog.gameObject.GetComponent<MultiHamaJump> ().enabled = false;
-		frog.gameObject.GetComponent<HealthScript> ().enabled = false;
-		frog.gameObject.GetComponent<skillScript> ().enabled = false;
-		frog.gameObject.transform.GetChild (1).gameObject.SetActive (false);
-		frog.gameObject.transform.GetChild (2).gameObject.SetActive (false);
-		frog.gameObject.GetComponent<BoxCollider2D> ().enabled = false;
-		frog.gameObject.tag = "ghost";
-		//frog.gameObject.GetComponent<FireButton> ().enabled = false;
-		        
+        Debug.Log("Now you dieeeeeee");
+        GameObject frog = GameObject.FindWithTag("localPlayer");
+        Debug.Log(frog.tag);
+        frog.gameObject.GetComponent<playerAnimation>().Died();
+        frog.gameObject.GetComponent<MultiHamaJump>().enabled = false;
+        frog.gameObject.GetComponent<HealthScript>().enabled = false;
+        frog.gameObject.GetComponent<skillScript>().enabled = false;
+        frog.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        frog.gameObject.transform.GetChild(2).gameObject.SetActive(false);
+        frog.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        frog.gameObject.tag = "ghost";
+        //frog.gameObject.GetComponent<FireButton> ().enabled = false;
+
         Debug.Log("is Died: " + youDied);
-        this.photonView.RPC("tellGameOver", PhotonTargets.All);
+        this.photonView.RPC("tellGameOver", PhotonTargets.All, PhotonNetwork.player.name);
     }
     [PunRPC]
-    public void tellGameOver()
+    public void tellGameOver(string name)
     {
         numberOfAlive--;
+        rankList.Add(name);
         if (numberOfAlive <= 1)
         {
             Debug.Log("is Died: " + youDied);
             gameOver = true;
+
+            //显示排名
+            GameObject canvas = GameObject.Find("Canvas");
+            canvas.transform.Find("Rank").gameObject.SetActive(true);
+            string[] rankString = { "1st", "2nd", "3rd", "4th" };
+            for (int i = 1; i <= rankList.Count + 1; i++)
+            {
+                //i=1, count = 3, index=
+                GameObject.Find("RankText" + (i + 1)).GetComponent<Text>().text = rankString[i] + ": " + rankList[rankList.Count - i];
+            }
+            GameObject.Find("RankText" + 1).GetComponent<Text>().text = rankString[0] + ": " + "神秘人";
         }
     }
     [PunRPC]
@@ -104,7 +118,7 @@ public class MultiGameControl : Photon.PunBehaviour
     {
         Debug.Log("set player number");
         numberOfAlive += 1;
-        if(numberOfAlive == 2)
+        if (numberOfAlive == 2)
         {
             this.photonView.RPC("startGame", PhotonTargets.All);
         }
@@ -115,7 +129,7 @@ public class MultiGameControl : Photon.PunBehaviour
     [PunRPC]
     public void startGame()
     {
-		GameObject.FindWithTag ("localPlayer").GetComponent<MultiHamaJump>().setName();
+        GameObject.FindWithTag("localPlayer").GetComponent<MultiHamaJump>().setName();
         this.gameStart = true;
         this.frogStop = false;
     }
@@ -124,5 +138,10 @@ public class MultiGameControl : Photon.PunBehaviour
     public void setPlayerNumber(int number)
     {
         numberOfAlive = number;
+    }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
