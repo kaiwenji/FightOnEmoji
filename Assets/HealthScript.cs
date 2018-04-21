@@ -48,10 +48,6 @@ public class HealthScript : Photon.MonoBehaviour
         if (this.tag.Equals("localPlayer"))
         {
             curHealth -= damage;
-            if (curHealth <= 0)
-            {
-                MultiGameControl.instance.GameOver();
-            }
             this.photonView.RPC("setHealthBar", PhotonTargets.All, curHealth);
         }
 
@@ -85,6 +81,20 @@ public class HealthScript : Photon.MonoBehaviour
     public void setHealthBar(int health)
     {
         curHealth = health;
+		if (curHealth <= 0) {
+			if (this.tag == "localPlayer") {
+				MultiGameControl.instance.GameOver ();
+			}
+			GetComponent<playerAnimation>().Died();
+			GetComponent<MultiHamaJump>().enabled = false;
+			//GetComponent<HealthScript>().enabled = false;
+			GetComponent<skillScript>().enabled = false;
+			//transform.GetChild(1).gameObject.SetActive(false);
+			//transform.GetChild(2).gameObject.SetActive(false);
+			GetComponent<BoxCollider2D>().enabled = false;
+			//frog.gameObject.tag = "ghost";
+
+		}	
         statusIndicator.SetHealth(curHealth, maxHealth);
     }
 

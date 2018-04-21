@@ -224,7 +224,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
         if (collision.tag == "Circle")
         {
             //            Debug.Log("get collider");
-            MultiGameControl.instance.GameOver();
+			GetComponent<HealthScript>().setHealth(0);
         }
         //		if (collision.tag == "roof") {
         //			Debug.Log ("player leaves the room");

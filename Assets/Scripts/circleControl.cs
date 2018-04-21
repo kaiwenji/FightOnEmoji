@@ -24,6 +24,10 @@ public class circleControl : Photon.MonoBehaviour
 		{
 			return;
 		}
+		if (!MultiGameControl.instance.gameStart) {
+			startTime = Time.time;
+			return;
+		}
 
 		if (inner.getRadius () <= 3) {
 			GameObject map = GameObject.Find ("Tilemap");
