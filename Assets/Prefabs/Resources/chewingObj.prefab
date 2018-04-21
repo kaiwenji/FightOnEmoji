@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1255953321418306}
+  m_RootGameObject: {fileID: 1487392840615536}
   m_IsPrefabParent: 1
---- !u!1 &1255953321418306
+--- !u!1 &1487392840615536
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4780268488577388}
-  - component: {fileID: 212748395200657348}
-  - component: {fileID: 61930432225252022}
+  - component: {fileID: 4405806804973892}
+  - component: {fileID: 212820063019966868}
+  - component: {fileID: 61457697779473348}
   m_Layer: 0
   m_Name: chewingObj
   m_TagString: chewinggum
@@ -28,25 +28,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4780268488577388
+--- !u!4 &4405806804973892
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1255953321418306}
+  m_GameObject: {fileID: 1487392840615536}
   m_LocalRotation: {x: 0.009686263, y: 0.004886694, z: -0.000047336587, w: 0.99994123}
-  m_LocalPosition: {x: 2.49, y: -2.98, z: -0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalPosition: {x: -5.783, y: -8.752, z: 0.135}
+  m_LocalScale: {x: 0.15368417, y: 0.13276315, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 1.11, y: 0.56, z: 0}
---- !u!61 &61930432225252022
+--- !u!61 &61457697779473348
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1255953321418306}
+  m_GameObject: {fileID: 1487392840615536}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -66,12 +66,12 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.12}
   m_EdgeRadius: 0
---- !u!212 &212748395200657348
+--- !u!212 &212820063019966868
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1255953321418306}
+  m_GameObject: {fileID: 1487392840615536}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

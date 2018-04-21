@@ -100,7 +100,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
         }
         else if (collision.tag == "ChewingGum")
         {
-            Destroy(collision.gameObject);
+			PhotonNetwork.Destroy (collision.gameObject);
             MultiGameControl.instance.frogStop = true;
             GetComponent<playerAnimation>().StepOnGum();
             gum_start_time = Time.time;
@@ -152,7 +152,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
         else if (collision.tag == "alien")
         {
             Debug.Log("Player meets a alien");
-            Destroy(collision.gameObject);
+			PhotonNetwork.Destroy (collision.gameObject);
             //GetComponent<HealthScript> ().IncreaseBar (20);
 
             this.photonView.RPC("AniMeetAlien", PhotonTargets.All);
@@ -162,7 +162,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
         {
             Debug.Log("Player is in water");
             this.photonView.RPC("AniInWater", PhotonTargets.All);
-
+			GetComponent<HealthScript> ().getInWater ();
         }
         else if (collision.tag == "roof")
         {
@@ -217,6 +217,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
         {
             Debug.Log("Player is getting out of water");
             this.photonView.RPC("AniOutWater", PhotonTargets.All);
+			GetComponent<HealthScript> ().outWater ();
         }
         if (collision.tag == "innerRoof")
         {

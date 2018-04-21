@@ -70,6 +70,14 @@ public class HealthScript : Photon.MonoBehaviour
         }
 
     }
+
+	public void getInWater(){
+		inWater = true;
+	}
+
+	public void outWater(){
+		inWater = false;
+	}
     [PunRPC]
     public void setHealthBar(int health)
     {

@@ -40,26 +40,25 @@ public class skillScript : MonoBehaviour
                 return;
             }
             Debug.Log(distCovered / distance);
-            bomb.transform.position = Vector3.Lerp(startPos, endPos, distCovered / distance);
+			if (bomb != null) {
+				bomb.transform.position = Vector3.Lerp(startPos, endPos, distCovered / distance);
+			}
         }
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "bomb" && !hasBomb)
-        {
+		if (collision.tag == "bomb" && !hasBomb) {
 			bombBtn.gameObject.SetActive (true);
 			hasBomb = true;
 			bombCounter = 5;
 			Destroy (collision.gameObject);
-        }
-        else if (collision.tag == "chewingGum" && !hasGum)
-        {
+		} else if (collision.tag == "chewinggum" && !hasGum) {
 			gumBtn.gameObject.SetActive (true);
 			hasGum = true;
 			gumCounter = 5;
 			Destroy (collision.gameObject);
-        }
+		}
     }
 
 
@@ -91,7 +90,7 @@ public class skillScript : MonoBehaviour
 			return;
 		}
         Vector3 startPos = transform.position;
-        startPos.y += 100;
+        startPos.y += 3;
         GameObject gum = PhotonNetwork.Instantiate("ChewingGum", startPos, transform.rotation, 0);
 
 		gumCounter--;
