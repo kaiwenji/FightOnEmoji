@@ -35,6 +35,7 @@ public class HealthScript : Photon.MonoBehaviour
     {
         if (inWater)
         {
+			GetComponent<MultiHamaJump> ().PlayerNoFire ();
             StopCoroutine(fireHarmPlayer());
             playerOnFire = false;
         }
@@ -93,12 +94,13 @@ public class HealthScript : Photon.MonoBehaviour
 
     IEnumerator fireHarmPlayer()
     {
-        int i = 5;
+        int i = 10;
         while (i > 0)
         {
             yield return new WaitForSeconds(0.5f);
             DamagePlayer(2);
             i--;
         }
+		GetComponent<MultiHamaJump> ().PlayerNoFire ();
     }
 }

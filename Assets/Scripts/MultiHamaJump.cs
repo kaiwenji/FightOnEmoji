@@ -275,6 +275,11 @@ public class MultiHamaJump : Photon.MonoBehaviour
         this.photonView.RPC("PlayerAniFire", PhotonTargets.All);
     }
 
+	public void PlayerNoFire()
+	{
+		this.photonView.RPC("PlayerAniNoFire", PhotonTargets.All);
+	}
+
     public void PlayerShootByGun()
     {
         this.photonView.RPC("PlayerAniShoot", PhotonTargets.All);
@@ -285,6 +290,11 @@ public class MultiHamaJump : Photon.MonoBehaviour
     {
         transform.GetComponent<playerAnimation>().OnFire();
     }
+
+	[PunRPC]
+	public void PlayerAniNoFire(){
+		transform.GetComponent<playerAnimation> ().OffFire ();
+	}
 
     [PunRPC]
     public void PlayerAniShoot()

@@ -62,6 +62,7 @@ public class MultiGameControl : Photon.PunBehaviour
             {
                 res = "You Lose!";
             }
+			SceneManager.LoadScene ("Menu");
         }
         GUI.Box(new Rect(325, -325, Screen.height, Screen.width), res, myStyle);
     }

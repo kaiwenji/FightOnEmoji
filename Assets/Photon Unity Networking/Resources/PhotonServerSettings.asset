@@ -72,4 +72,5 @@ MonoBehaviour:
   - tellGameOver
   - updatePlayerNumber
   - startGame
+  - PlayerAniNoFire
   DisableAutoOpenWizard: 1

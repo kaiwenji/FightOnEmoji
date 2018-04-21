@@ -244,7 +244,6 @@ public class CreatePro : MonoBehaviour {
 		timer1 += Time.deltaTime;
 
 		if (radius* 6 < 500) {
-			Debug.Log ("enter small circle");
 			//8s
 			if (timer1 >= 30) {
 				timer1 = 0;

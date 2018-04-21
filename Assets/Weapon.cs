@@ -68,7 +68,8 @@ public class Weapon : MonoBehaviour {
             {
                 timeToFire = Time.time + fireInterval;
                 ShootSwapEffect();
-                FireButton.pressFireButton = false;
+				FireButton.pressFireButton = false;
+				Debug.Log ("fire button " + FireButton.pressFireButton); 
                 MultiHamaJump.numOfBullets--;
             }
         }
@@ -94,7 +95,6 @@ public class Weapon : MonoBehaviour {
         Vector3 direction = firePoint.position - firePoint.parent.position;
         direction = direction * 20 / direction.magnitude;
         fire.GetComponent<Rigidbody2D>().velocity = direction * 5;
-        Destroy(fire.gameObject, 1f);
 
         fire.transform.GetComponent<BulletScript>().shooter = transform.parent.gameObject;
     }

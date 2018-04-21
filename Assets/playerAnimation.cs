@@ -20,7 +20,11 @@ public class playerAnimation : MonoBehaviour {
 	}
 
 	public void OnFire() {
-		playerAni.SetTrigger ("Fire");
+		playerAni.SetBool ("OnFire", true);
+	}
+
+	public void OffFire() {
+		playerAni.SetBool ("OnFire", false);
 	}
 
 	public void InWater() {
