@@ -9,6 +9,7 @@ public class HealthScript : Photon.MonoBehaviour
     public StatusIndicator background;
     public bool playerOnFire = false;
     public bool inWater = false;
+	Coroutine lastRoutine = null;
 
 
     public int curHealth
@@ -33,10 +34,10 @@ public class HealthScript : Photon.MonoBehaviour
 
     void Update()
     {
-        if (inWater)
+		if (inWater && playerOnFire)
         {
 			GetComponent<MultiHamaJump> ().PlayerNoFire ();
-            StopCoroutine(fireHarmPlayer());
+			StopCoroutine(lastRoutine);
             playerOnFire = false;
         }
     }
@@ -88,7 +89,7 @@ public class HealthScript : Photon.MonoBehaviour
 
     public void catchFire()
     {
-        StartCoroutine(fireHarmPlayer());
+		lastRoutine = StartCoroutine(fireHarmPlayer());
         playerOnFire = true;
     }
 
