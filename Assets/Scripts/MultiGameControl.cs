@@ -63,7 +63,7 @@ public class MultiGameControl : Photon.PunBehaviour
             {
                 res = "You Lose!";
             }
-            Invoke("ReturnToMenu", 10f);
+            //Invoke("ReturnToMenu", 10f);
         }
         GUI.Box(new Rect(325, -325, Screen.height, Screen.width), res, myStyle);
     }
@@ -97,10 +97,10 @@ public class MultiGameControl : Photon.PunBehaviour
             string[] rankString = { "1st", "2nd", "3rd", "4th" };
             for (int i = 1; i <= rankList.Count + 1; i++)
             {
-                //i=1, count = 3, index=
+                //i=1, count = 3, index=2
                 GameObject.Find("RankText" + (i + 1)).GetComponent<Text>().text = rankString[i] + ": " + rankList[rankList.Count - i];
             }
-            GameObject.Find("RankText" + 1).GetComponent<Text>().text = rankString[0] + ": " + "神秘人";
+            GameObject.Find("RankText" + 1).GetComponent<Text>().text = rankString[0] + ": " + "You-Know-Who";
         }
     }
     [PunRPC]
@@ -128,10 +128,5 @@ public class MultiGameControl : Photon.PunBehaviour
     public void setPlayerNumber(int number)
     {
         numberOfAlive = number;
-    }
-
-    public void ReturnToMenu()
-    {
-        SceneManager.LoadScene("Menu");
     }
 }
