@@ -73,4 +73,5 @@ MonoBehaviour:
   - updatePlayerNumber
   - startGame
   - PlayerAniNoFire
+  - AniStepGum
   DisableAutoOpenWizard: 1

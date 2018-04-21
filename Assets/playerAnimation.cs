@@ -66,4 +66,7 @@ public class playerAnimation : MonoBehaviour {
 		playerAni.SetBool ("Gum", false);
 	}
 
+	public void Died() {
+		playerAni.SetBool ("Died", true);
+	}
 }

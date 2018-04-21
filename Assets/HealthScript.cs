@@ -66,7 +66,7 @@ public class HealthScript : Photon.MonoBehaviour
     {
         if (this.tag.Equals("localPlayer"))
         {
-            curHealth = Mathf.Max(curHealth + increase, 100);
+            curHealth = Mathf.Min(curHealth + increase, 100);
             this.photonView.RPC("setHealthBar", PhotonTargets.All, curHealth);
         }
 

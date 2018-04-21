@@ -73,8 +73,21 @@ public class MultiGameControl : Photon.PunBehaviour
             return;
         }
         youDied = true;
+
+		Debug.Log ("Now you dieeeeeee");
+		GameObject frog = GameObject.FindWithTag ("localPlayer");
+		Debug.Log (frog.tag);
+		frog.gameObject.GetComponent<playerAnimation> ().Died ();
+		frog.gameObject.GetComponent<MultiHamaJump> ().enabled = false;
+		frog.gameObject.GetComponent<HealthScript> ().enabled = false;
+		frog.gameObject.GetComponent<skillScript> ().enabled = false;
+		frog.gameObject.transform.GetChild (1).gameObject.SetActive (false);
+		frog.gameObject.transform.GetChild (2).gameObject.SetActive (false);
+
+		//frog.gameObject.GetComponent<FireButton> ().enabled = false;
+		        
         Debug.Log("is Died: " + youDied);
-        this.photonView.RPC("tellGameOver", PhotonTargets.All);
+        //this.photonView.RPC("tellGameOver", PhotonTargets.All);
     }
     [PunRPC]
     public void tellGameOver()
