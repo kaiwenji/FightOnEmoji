@@ -78,25 +78,30 @@ public class HealthScript : Photon.MonoBehaviour
 		inWater = false;
 	}
     [PunRPC]
-    public void setHealthBar(int health)
+	public void setHealthBar(int health)
     {
         curHealth = health;
-		if (curHealth <= 0) {
-			if (this.tag == "localPlayer") {
-				MultiGameControl.instance.GameOver ();
-			}
-			GetComponent<playerAnimation>().Died();
-			GetComponent<MultiHamaJump>().enabled = false;
-			//GetComponent<HealthScript>().enabled = false;
-			GetComponent<skillScript>().enabled = false;
-			//transform.GetChild(1).gameObject.SetActive(false);
-			//transform.GetChild(2).gameObject.SetActive(false);
-			GetComponent<BoxCollider2D>().enabled = false;
-			//frog.gameObject.tag = "ghost";
+        if (curHealth <= 0) {
+	//            if (this.tag == "localPlayer") {
+	//                MultiGameControl.instance.GameOver ();
+	//            }
+	            GetComponent<playerAnimation>().Died();
+	            GetComponent<MultiHamaJump>().enabled = false;
+	            //GetComponent<HealthScript>().enabled = false;
+	            GetComponent<skillScript>().enabled = false;
+	            transform.GetChild(1).gameObject.SetActive(false);
+	            transform.GetChild(2).gameObject.SetActive(false);
+	            GetComponent<BoxCollider2D>().enabled = false;
+	            //frog.gameObject.tag = "ghost";
 
-		}	
-        statusIndicator.SetHealth(curHealth, maxHealth);
-    }
+	            GameObject fireButton = GameObject.FindWithTag("FireButton");
+	            fireButton.gameObject.SetActive (false); 
+
+
+	        }    
+	        statusIndicator.SetHealth(curHealth, maxHealth);
+	    }
+
 
     public void catchFire()
     {
@@ -115,5 +120,6 @@ public class HealthScript : Photon.MonoBehaviour
             i--;
         }
 		GetComponent<MultiHamaJump> ().PlayerNoFire ();
+		GetComponent<joystickScript>().force = 5;
     }
 }

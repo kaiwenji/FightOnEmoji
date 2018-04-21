@@ -43,6 +43,7 @@ TagManager:
   - Toast
   - fireball
   - SwapEffect
+  - FireButton
   layers:
   - Default
   - TransparentFX

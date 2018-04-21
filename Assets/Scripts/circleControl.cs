@@ -24,6 +24,10 @@ public class circleControl : Photon.MonoBehaviour
 		{
 			return;
 		}
+		if (PhotonNetwork.isMasterClient) {
+			GameObject map = GameObject.Find ("Tilemap");
+			map.GetComponent<CreatePro> ().initStaticPro ();
+		}
 		if (!MultiGameControl.instance.gameStart) {
 			startTime = Time.time;
 			return;
