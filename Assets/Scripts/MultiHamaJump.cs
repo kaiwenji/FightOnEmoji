@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class MultiHamaJump : Photon.MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
     public static bool withFireGun = false;
     public static bool withSwapGun = false;
     public static int numOfBullets = 5;
+	public Text nameText;
 
     //private bool timer_start = false;
     private float start_time;
@@ -71,6 +73,19 @@ public class MultiHamaJump : Photon.MonoBehaviour
         // DamagePlayer(10);
 
     }
+
+	public void setName(){
+        this.photonView.RPC ("RPCsetName", PhotonTargets.All, PhotonNetwork.player.name);
+    }
+
+	[PunRPC]
+	public void RPCsetName(string name){
+
+        nameText.text = name;
+    } 
+
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
 

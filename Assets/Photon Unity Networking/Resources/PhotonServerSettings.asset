@@ -74,4 +74,5 @@ MonoBehaviour:
   - startGame
   - PlayerAniNoFire
   - AniStepGum
+  - RPCsetName
   DisableAutoOpenWizard: 1

@@ -23,6 +23,7 @@ public class NetworkPlayer : Photon.MonoBehaviour
             Destroy(GetComponent<Rigidbody2D>());
             Destroy(GetComponent<joystickScript>());
         }
+		PhotonNetwork.player.name = GetUserName.username;
         //GetComponent<MultiHamaJump>().enabled = true;
     }
     

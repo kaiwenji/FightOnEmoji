@@ -45,9 +45,8 @@ public class MultiGameControl : Photon.PunBehaviour
         {
             Time.timeScale = 0f;
         }
-
-
     }
+		
     private void OnGUI()
     {
         string res = numberOfAlive.ToString();
@@ -105,24 +104,25 @@ public class MultiGameControl : Photon.PunBehaviour
     {
         Debug.Log("set player number");
         numberOfAlive += 1;
-        if(numberOfAlive >= 1)
+        if(numberOfAlive == 2)
         {
             this.photonView.RPC("startGame", PhotonTargets.All);
         }
         Debug.Log("number is" + numberOfAlive);
         this.photonView.RPC("setPlayerNumber", PhotonTargets.Others, numberOfAlive);
     }
+
     [PunRPC]
     public void startGame()
     {
+		GameObject.FindWithTag ("localPlayer").GetComponent<MultiHamaJump>().setName();
         this.gameStart = true;
         this.frogStop = false;
     }
+
     [PunRPC]
     public void setPlayerNumber(int number)
     {
         numberOfAlive = number;
     }
-
-
 }
