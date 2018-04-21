@@ -83,11 +83,12 @@ public class MultiGameControl : Photon.PunBehaviour
 		frog.gameObject.GetComponent<skillScript> ().enabled = false;
 		frog.gameObject.transform.GetChild (1).gameObject.SetActive (false);
 		frog.gameObject.transform.GetChild (2).gameObject.SetActive (false);
-
+		frog.gameObject.GetComponent<BoxCollider2D> ().enabled = false;
+		frog.gameObject.tag = "ghost";
 		//frog.gameObject.GetComponent<FireButton> ().enabled = false;
 		        
         Debug.Log("is Died: " + youDied);
-        //this.photonView.RPC("tellGameOver", PhotonTargets.All);
+        this.photonView.RPC("tellGameOver", PhotonTargets.All);
     }
     [PunRPC]
     public void tellGameOver()

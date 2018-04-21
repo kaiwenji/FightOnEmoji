@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NetworkManager : MonoBehaviour {
-    const string VERSION = "v0.0.1";
+    const string VERSION = "v1.2.2";
     public string roomName = "test";
     public string prefabName = "frog";
     public string circlePrefab = "Circle";

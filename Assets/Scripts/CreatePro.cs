@@ -131,7 +131,7 @@ public class CreatePro : MonoBehaviour {
 	void Update () {
 		timer += Time.deltaTime;
 		//8s
-		if (timer >= 20) {
+		if (timer >= 100) {
 			timer = 0;
 			Vector2 point1 = new Vector2 (Random.Range (-85, -65), Random.Range (-6, 20));
 			Vector2 point2 = new Vector2 (Random.Range (-85, -40), Random.Range (10, 20));

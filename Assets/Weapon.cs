@@ -49,17 +49,10 @@ public class Weapon : MonoBehaviour {
 			}
 		} 
 		else if (transform.parent.tag == "localPlayer" && MultiHamaJump.withFireGun) {
-			if (fireRate == 0) {
-				if (FireButton.pressFireButton && MultiHamaJump.numOfBullets > 0) {
-					ShootFireBall ();
-					FireButton.pressFireButton = false;
-                    MultiHamaJump.numOfBullets--;
-				}
-			} else {
-				if (Input.GetButton ("Fire1") && Time.time > timeToFire) {
-					timeToFire = Time.time + 1 / fireRate;
-					ShootFireBall ();
-				}
+			if (FireButton.pressFireButton && MultiHamaJump.numOfBullets > 0) {
+				ShootFireBall ();
+				FireButton.pressFireButton = false;
+                MultiHamaJump.numOfBullets--;
 			}
         }
         else if (transform.parent.tag == "localPlayer" && MultiHamaJump.withSwapGun)
@@ -69,7 +62,7 @@ public class Weapon : MonoBehaviour {
                 timeToFire = Time.time + fireInterval;
                 ShootSwapEffect();
 				FireButton.pressFireButton = false;
-				Debug.Log ("fire button " + FireButton.pressFireButton); 
+
                 MultiHamaJump.numOfBullets--;
             }
         }
@@ -96,7 +89,7 @@ public class Weapon : MonoBehaviour {
         direction = direction * 20 / direction.magnitude;
         fire.GetComponent<Rigidbody2D>().velocity = direction * 5;
 
-        fire.transform.GetComponent<BulletScript>().shooter = transform.parent.gameObject;
+		fire.transform.GetComponent<SwapBullet>().shooter = transform.parent.gameObject;
     }
 
     void hideToast()
