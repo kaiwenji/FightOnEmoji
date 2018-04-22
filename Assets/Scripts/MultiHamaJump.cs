@@ -119,7 +119,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
         }
         else if (collision.tag == "ChewingGum")
         {
-			PhotonNetwork.Destroy (collision.gameObject);
+			Destroy (collision.gameObject);
 
 			MultiGameControl.instance.frogStop = true;
 			this.photonView.RPC ("AniStepGum", PhotonTargets.All);
@@ -173,7 +173,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
         else if (collision.tag == "alien")
         {
             Debug.Log("Player meets a alien");
-			collision.gameObject.SetActive(false);
+			Destroy (collision.gameObject);
             GetComponent<HealthScript> ().IncreaseBar (20);
 
             this.photonView.RPC("AniMeetAlien", PhotonTargets.All);
@@ -201,8 +201,9 @@ public class MultiHamaJump : Photon.MonoBehaviour
         }
         else if (collision.tag == "bullet")
         {
-            GetComponent<HealthScript>().DamagePlayer(30);
+            GetComponent<HealthScript>().DamagePlayer(10);
             transform.GetComponent<playerAnimation>().ShootByGun();
+			Debug.Log ("current health" + GetComponent<HealthScript> ().curHealth);
         }
         else if (collision.tag == "fireball")
         {

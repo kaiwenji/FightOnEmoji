@@ -36,7 +36,6 @@ public class playerAnimation : MonoBehaviour {
 	}
 
 	public void ShootByGun() {
-        Debug.Log("shoot by gun");
 		playerAni.SetTrigger ("ShootByGun");
 	}
 
