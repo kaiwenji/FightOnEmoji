@@ -103,8 +103,27 @@ public class MultiHamaJump : Photon.MonoBehaviour
 		if (dizzy) {
 			return;
 		}
-		Debug.Log ("ON Trigger Enter 2DDDDDDDD");
-		Debug.Log (collision.tag);
+		if (collision.tag == "bomb") {
+			if (!GetComponent<skillScript> ().hasBomb) {
+				Destroy (collision.gameObject);
+				GetComponent<skillScript> ().hasBomb = true;
+				if (this.tag == "localPlayer") {
+					GetComponent<skillScript> ().bombCounter = 5;
+					GetComponent<skillScript> ().bombBtn.gameObject.SetActive (true);
+				}
+			}
+
+		}
+		if (collision.tag == "chewinggum") {
+			if (!GetComponent<skillScript> ().hasGum) {
+				Destroy (collision.gameObject);
+				GetComponent<skillScript> ().hasGum = true;
+				if (this.tag == "localPlayer") {
+					GetComponent<skillScript> ().gumCounter = 5;
+					GetComponent<skillScript> ().gumBtn.gameObject.SetActive (true);
+				}
+			}
+		}
         if (collision.tag == "Bomb")
         {
             Vector3 vector = transform.position - collision.gameObject.transform.position;

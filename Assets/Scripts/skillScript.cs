@@ -12,10 +12,10 @@ public class skillScript : MonoBehaviour
     private GameObject bomb;
     public Button bombBtn;
     public Button gumBtn;
-    private bool hasBomb = false;
-    private bool hasGum = false;
-	private int bombCounter = 0;
-	private int gumCounter = 0;
+    public bool hasBomb = false;
+    public bool hasGum = false;
+	public int bombCounter = 0;
+	public int gumCounter = 0;
 
 
     // Use this for initialization
@@ -45,20 +45,6 @@ public class skillScript : MonoBehaviour
 			}
         }
 
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-		if (collision.tag == "bomb" && !hasBomb) {
-			bombBtn.gameObject.SetActive (true);
-			hasBomb = true;
-			bombCounter = 5;
-			Destroy (collision.gameObject);
-		} else if (collision.tag == "chewinggum" && !hasGum) {
-			gumBtn.gameObject.SetActive (true);
-			hasGum = true;
-			gumCounter = 5;
-			Destroy (collision.gameObject);
-		}
     }
 
 

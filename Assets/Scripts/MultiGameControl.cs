@@ -114,7 +114,7 @@ public class MultiGameControl : Photon.PunBehaviour
     {
         Debug.Log("set player number");
         numberOfAlive += 1;
-        if (numberOfAlive >= 2)
+        if (numberOfAlive >= 1)
         {
             this.photonView.RPC("startGame", PhotonTargets.All);
         }
@@ -125,7 +125,7 @@ public class MultiGameControl : Photon.PunBehaviour
     [PunRPC]
     public void startGame()
     {
-        GameObject.FindWithTag("localPlayer").GetComponent<MultiHamaJump>().setName();
+        //GameObject.FindWithTag("localPlayer").GetComponent<MultiHamaJump>().setName();
         this.gameStart = true;
         this.frogStop = false;
     }
