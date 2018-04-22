@@ -75,10 +75,12 @@ public class MultiGameControl : Photon.PunBehaviour
         }
         youDied = true;
 
+		//Ghost Mode: all buttons will be enabled
 		GameObject fireButton = GameObject.FindWithTag("FireButton");
 		fireButton.gameObject.SetActive (false); 
-
-
+		GameObject emoji = GameObject.FindWithTag ("localPlayer");
+        emoji.GetComponent<skillScript> ().bombBtn.enabled = false;
+        emoji.GetComponent<skillScript> ().gumBtn.enabled = false;
 
         Debug.Log("is Died: " + youDied);
         this.photonView.RPC("tellGameOver", PhotonTargets.All, PhotonNetwork.player.name);
@@ -112,7 +114,7 @@ public class MultiGameControl : Photon.PunBehaviour
     {
         Debug.Log("set player number");
         numberOfAlive += 1;
-        if (numberOfAlive == 2)
+        if (numberOfAlive >= 2)
         {
             this.photonView.RPC("startGame", PhotonTargets.All);
         }

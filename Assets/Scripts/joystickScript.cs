@@ -7,7 +7,7 @@ public class joystickScript : MonoBehaviour
 
     Rigidbody2D GetR;
     //public int VelocityLR = 5;
-    public float force = 5;
+    public float force = 8;
     // Use this for initialization
     void Start()
     {

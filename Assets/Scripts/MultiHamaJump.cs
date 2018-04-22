@@ -103,6 +103,8 @@ public class MultiHamaJump : Photon.MonoBehaviour
 		if (dizzy) {
 			return;
 		}
+		Debug.Log ("ON Trigger Enter 2DDDDDDDD");
+		Debug.Log (collision.tag);
         if (collision.tag == "Bomb")
         {
             Vector3 vector = transform.position - collision.gameObject.transform.position;
@@ -113,7 +115,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
             start_time = Time.time;
             dizzy = true;
             StartCoroutine(actionFrozen(1));
-            GetComponent<HealthScript>().DamagePlayer(20);
+            GetComponent<HealthScript>().DamagePlayer(12);
         }
         else if (collision.tag == "ChewingGum")
         {
@@ -171,7 +173,7 @@ public class MultiHamaJump : Photon.MonoBehaviour
         else if (collision.tag == "alien")
         {
             Debug.Log("Player meets a alien");
-			PhotonNetwork.Destroy (collision.gameObject);
+			collision.gameObject.SetActive(false);
             GetComponent<HealthScript> ().IncreaseBar (20);
 
             this.photonView.RPC("AniMeetAlien", PhotonTargets.All);

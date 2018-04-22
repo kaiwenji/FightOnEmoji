@@ -39,7 +39,7 @@ public class HealthScript : Photon.MonoBehaviour
 			GetComponent<MultiHamaJump> ().PlayerNoFire ();
 			StopCoroutine(lastRoutine);
             playerOnFire = false;
-			GetComponent<joystickScript>().force = 5;
+			GetComponent<joystickScript>().force = 8;
         }
     }
 
@@ -118,6 +118,6 @@ public class HealthScript : Photon.MonoBehaviour
             i--;
         }
 		GetComponent<MultiHamaJump> ().PlayerNoFire ();
-		GetComponent<joystickScript>().force = 5;
+		GetComponent<joystickScript>().force = 8;
     }
 }
