@@ -125,7 +125,7 @@ public class MultiGameControl : Photon.PunBehaviour
     [PunRPC]
     public void startGame()
     {
-        //GameObject.FindWithTag("localPlayer").GetComponent<MultiHamaJump>().setName();
+        GameObject.FindWithTag("localPlayer").GetComponent<MultiHamaJump>().setName();
         this.gameStart = true;
         this.frogStop = false;
     }
