@@ -53,7 +53,7 @@ public class circleControl : Photon.MonoBehaviour
 				this.RpcfinishShrink();
 				isShrinked = false;
 				this.setCenter();
-				waitTime = 200f;
+				waitTime = 20f;
 			}
 			else
 			{
