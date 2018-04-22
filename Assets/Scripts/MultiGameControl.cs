@@ -91,18 +91,20 @@ public class MultiGameControl : Photon.PunBehaviour
         if (numberOfAlive <= 1)
         {
             Debug.Log("is Died: " + youDied);
-            gameOver = true;
 
             //显示排名
             GameObject canvas = GameObject.Find("Canvas");
             canvas.transform.Find("Rank").gameObject.SetActive(true);
-            string[] rankString = { "1st", "2nd", "3rd", "4th" };
+            string[] rankString = { "1st: You-Know-Who", "2nd", "3rd", "4th" };
+            GameObject.Find("RankText1").GetComponent<Text>().text = rankString[0];
+            Debug.Log(GameObject.Find("RankText1").GetComponent<Text>().text);
             for (int i = 1; i <= rankList.Count + 1; i++)
             {
                 //i=1, count = 3, index=2
                 GameObject.Find("RankText" + (i + 1)).GetComponent<Text>().text = rankString[i] + ": " + rankList[rankList.Count - i];
             }
-            GameObject.Find("RankText" + 1).GetComponent<Text>().text = rankString[0] + ": " + "You-Know-Who";
+
+            gameOver = true;
         }
     }
     [PunRPC]
